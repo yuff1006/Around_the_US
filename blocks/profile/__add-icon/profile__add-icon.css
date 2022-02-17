@@ -1,0 +1,9 @@
+.profile__add-icon {
+    grid-area: add;
+    min-width: 15px;
+    max-height: 15px;
+    border: 2px solid #FFFFFF;
+    border-radius: 2px;
+    padding: 14px 64px;
+    margin: auto 0;
+}

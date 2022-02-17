@@ -1,0 +1,10 @@
+.profile {
+    display: grid;
+    grid-template-columns: min-content auto min-content;
+    grid-template-rows: min-content auto;
+    grid-template-areas:
+    "profile-pic name add"
+    "profile-pic title add";
+    max-width: 1280px;
+    margin: 36.25px auto 46.25px;
+}

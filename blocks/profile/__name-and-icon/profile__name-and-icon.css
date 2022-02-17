@@ -1,0 +1,4 @@
+.profile__name-and-icon {
+  grid-area: name;
+  align-self: flex-end;
+}
