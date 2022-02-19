@@ -1,17 +1,16 @@
-.header {
+.cards {
   max-width: 880px;
-  border-bottom: 1px solid rgba(84,84,84, 0.7);
   margin: auto;
 }
 
 @media screen and (max-width: 985px) {
-  .header {
+  .cards {
     max-width: 577px;
   }
 }
 
 @media screen and (max-width: 600px) {
-  .header {
+  .cards {
     max-width: 280px;
   }
 }

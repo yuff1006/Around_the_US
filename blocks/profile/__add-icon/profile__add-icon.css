@@ -6,4 +6,31 @@
     border-radius: 2px;
     padding: 14px 64px;
     margin: auto 0;
+    transition: opacity ease-out 0.3s;
+}
+
+.profile__add-icon:hover {
+  opacity: 0.6;
+}
+
+@media screen and (max-width: 985px) {
+  .profile__add-icon {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 17px 0;
+    max-height: 50px;
+    margin-top: 20px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .profile__add-icon {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .profile__add-icon {
+    margin: 0;
+  }
 }

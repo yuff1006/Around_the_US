@@ -5,3 +5,30 @@
   display: inline-block;
   margin: 0 18px 0 0;
 }
+
+@media screen and (max-width: 985px) {
+  .profile__name {
+    font-size: 36px;
+    text-align: center;
+    display: inline;
+    margin-right: 15px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .profile__name {
+    font-size: 28px;
+    text-align: center;
+    display: inline;
+    margin-right: 12px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .profile__name {
+    font-size: 22px;
+    text-align: center;
+    display: inline;
+    margin-right: 10px;
+  }
+}

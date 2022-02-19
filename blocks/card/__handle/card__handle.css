@@ -1,0 +1,6 @@
+.card__handle {
+  display: flex;
+  justify-content: space-between;
+  margin: 25px 15px;
+  padding: 0;
+}
