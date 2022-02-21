@@ -1,3 +1,8 @@
 .card__heart {
     width: 21px;
+    transition: 0.3s opacity ease-out;
+}
+
+.card__heart:hover {
+  opacity: 0.5;
 }
