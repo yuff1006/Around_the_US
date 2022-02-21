@@ -1,4 +1,4 @@
-.edit-form__name {
+.edit-form__person-title {
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   margin:  0 auto 29.74px;
@@ -11,7 +11,7 @@
 }
 
 @media screen and (max-width: 600px) {
-  .edit-form__name {
+  .edit-form__person-title {
     min-width: 238px;
   }
 }
