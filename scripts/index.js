@@ -21,10 +21,9 @@ function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = formName.value;
   profileTitle.textContent = formTitle.value;
-  console.log(formName.value)
   editForm.classList.remove("edit-form_open");
 }
 
-formField.addEventListener("submit", handleProfileFormSubmit)
+formField.addEventListener("submit", handleProfileFormSubmit);
 
 
