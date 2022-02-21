@@ -1,0 +1,17 @@
+.edit-form__X {
+  position: relative;
+  bottom: 375px;
+  left: 430px;
+  transition: opacity 0.3s ease-out;
+}
+
+.edit-form__X:hover {
+  opacity: 0.6;
+}
+
+@media screen and (max-width: 600px) {
+  .edit-form__X {
+    bottom: 380px;
+    left: 245px;
+  }
+}

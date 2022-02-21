@@ -1,0 +1,17 @@
+.edit-form__name {
+  opacity: 0.2;
+  border: none;
+  border-bottom: 1px solid #000000;
+  margin:  0 auto 29.74px;
+  display: block;
+  min-width: 358px;
+  font-size: 14px;
+  line-height: 14px;
+  padding: 0 0 13px 0;
+}
+
+@media screen and (max-width: 600px) {
+  .edit-form__name {
+    min-width: 238px;
+  }
+}

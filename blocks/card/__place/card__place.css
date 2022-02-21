@@ -5,4 +5,7 @@
   line-height: 1.2;
   margin: 0;
   padding-left: 6px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
