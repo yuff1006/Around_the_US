@@ -1,19 +1,24 @@
 .profile__edit-icon {
-  padding: 7px;
-  width: 10px;
+  width: 24px;
+  height: 24px;
   border: 1px solid #FFFFFF;
   transition: opacity ease-out 0.3s;
   margin: 0;
-  padding: 0;
+  cursor: pointer;
+  background-color: transparent;
+  background-image: url(../../../images/profile__edit-icon.svg);
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .profile__edit-icon:hover {
   opacity: 0.6;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 600px) {
   .profile__edit-icon {
-    width: 7.5px;
-    padding: 5.25px;
+    width: 18px;
+    height: 18px;
   }
 }
+

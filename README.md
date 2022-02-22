@@ -1,16 +1,18 @@
 # Project 4: Around The U.S.
 
-### Overview
+## About the Project
+Around The U.S. is a web app documenting pictures of destinations a user wants to display on their personal page.
 
-* Figma
-* Images
+## Technologies and Standards Used
+* HTML
+* CSS
+* JavaScript
+* BEM file structure
 
+## Design
 **Figma**
 
 * [Link to the project in Figma](https://www.figma.com/file/SurN1jaeEQIhuZEDMhmWWf/Sprint-4-Around-The-U.S.-desktop-mobile?node-id=0%3A1)
 
-**Images**
-
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster. 
-
-Have fun with JavaScript!
+## Live Demo
+Enjoy the live demo [here](https://yuff1006.github.io/Around_the_US/)

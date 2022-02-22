@@ -35,13 +35,11 @@
 @import url('../blocks/footer/__text/footer__text.css');
 /* edit-form elements */
 @import url('../blocks/edit-form/__title/edit-form__title.css');
-@import url('../blocks/edit-form/__name/edit-form__name.css');
-@import url('../blocks/edit-form/__person-title/edit-form__person-title.css');
+@import url('../blocks/edit-form/__person/edit-form__person.css');
 @import url('../blocks/edit-form/__button/edit-form__button.css');
 @import url('../blocks/edit-form/__container/edit-form__container.css');
 @import url('../blocks/edit-form/__container/edit-form__container.css');
-@import url('../blocks/edit-form/__X/edit-form__X.css');
+@import url('../blocks/edit-form/__close/edit-form__close.css');
 @import url('../blocks/edit-form/__form/edit-form__form.css');
 /* edit-form modifier */
 @import url('../blocks/edit-form/_open/edit-form_open.css');
-
