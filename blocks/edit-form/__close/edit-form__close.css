@@ -1,0 +1,25 @@
+.edit-form__close {
+  position: relative;
+  bottom: 375px;
+  left: 430px;
+  transition: opacity 0.3s ease-out;
+  cursor: pointer;
+  background-color: transparent;
+  background-image: url(../../../images/close.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 40px;
+  height: 40px;
+  border: none;
+}
+
+.edit-form__close:hover {
+  opacity: 0.6;
+}
+
+@media screen and (max-width: 600px) {
+  .edit-form__close {
+    bottom: 380px;
+    left: 245px;
+  }
+}
