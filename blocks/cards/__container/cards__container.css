@@ -5,6 +5,7 @@
   padding: 0;
   row-gap: 21px;
   column-gap: 17px;
+  margin: 0;
 }
 
 @media screen and (max-width: 985px) {
@@ -17,6 +18,5 @@
 @media screen and (max-width: 600px) {
   .cards__container {
     grid-template-columns: 1fr;
-    grid-template-rows: auto;
   }
 }

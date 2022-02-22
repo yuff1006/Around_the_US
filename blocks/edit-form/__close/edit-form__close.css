@@ -1,7 +1,7 @@
 .edit-form__close {
   position: relative;
-  bottom: 375px;
-  left: 430px;
+  bottom: 340px;
+  left: 420px;
   transition: opacity 0.3s ease-out;
   cursor: pointer;
   background-color: transparent;
@@ -19,7 +19,9 @@
 
 @media screen and (max-width: 600px) {
   .edit-form__close {
-    bottom: 380px;
-    left: 245px;
+    left: 250px;
+    max-width: 26px;
+    max-height: 26px;
+    background-size: 100%;
   }
 }

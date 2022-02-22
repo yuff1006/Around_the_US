@@ -30,12 +30,6 @@
 
 @media screen and (max-width: 600px) {
   .profile__add-icon {
-    width: 90%;
-  }
-}
-
-@media screen and (max-width: 320px) {
-  .profile__add-icon {
     margin: 0;
   }
 }

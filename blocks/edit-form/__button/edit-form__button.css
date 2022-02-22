@@ -3,7 +3,7 @@
   border-radius: 2px;
   padding: 14px 124px;
   color: white;
-  margin: 14px 36px 36.51px;
+  margin: 14px 36px 0px;
   max-width: 358px;
   box-sizing: border-box;
   transition: opacity ease-out 0.3s;
@@ -20,7 +20,7 @@
 @media screen and (max-width: 600px) {
   .edit-form__button {
     max-width: 238px;
-    margin: 17px 22px 25px;
+    margin: 17px 22px 0px;
     font-size: 14px;
     padding: 14px 100px;
   }

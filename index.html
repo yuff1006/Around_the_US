@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -15,10 +16,10 @@
       <img alt="Jacques Cousteau's headshot" class="profile__pic" src="./images/profile__pic.jpg">
       <div class="profile__name-and-icon">
         <h1 class="profile__name">Jacques Cousteau</h1>
-        <button type="button" class="profile__edit-icon"</button>
+        <button aria-label="Edit" type="button" class="profile__edit-icon"></button>
       </div>
       <p class="profile__title">Explorer</p>
-      <button type="button" class="profile__add-icon"></button>
+      <button aria-label="Add" type="button" class="profile__add-icon"></button>
     </section>
     <section class="cards">
       <ul class="cards__container">
@@ -26,42 +27,42 @@
           <img class="card__img" alt="Yosemite Valley" src="./images/yosemite.png">
           <div class="card__handle">
             <h2 class="card__place">Yosemite Valley</h2>
-            <button type="button" class="card__heart"></button>
+            <button aria-label="Like" type="button" class="card__heart"></button>
           </div>
         </li>
         <li class="card">
           <img class="card__img" alt="Lake Louise" src="./images/lake-louise.png">
           <div class="card__handle">
             <h2 class="card__place">Lake Louise</h2>
-            <button type="button" class="card__heart"></button>
+            <button aria-label="Like" type="button" class="card__heart"></button>
           </div>
         </li>
         <li class="card">
           <img class="card__img" alt="Bald Mountains" src="./images/bald-mountains.png">
           <div class="card__handle">
             <h2 class="card__place">Bald Mountains</h2>
-            <button type="button" class="card__heart"></button>
+            <button aria-label="Like" type="button" class="card__heart"></button>
           </div>
         </li>
         <li class="card">
           <img class="card__img" alt="Latemar" src="./images/latemar.png">
           <div class="card__handle">
             <h2 class="card__place">Latemar</h2>
-            <button type="button" class="card__heart"></button>
+            <button aria-label="Like" type="button" class="card__heart"></button>
           </div>
         </li>
         <li class="card">
           <img class="card__img" alt="Vanoise National Park" src="./images/vanoise.png">
           <div class="card__handle">
             <h2 class="card__place">Vanoise National Park</h2>
-            <button type="button" class="card__heart"></button>
+            <button aria-label="Like" type="button" class="card__heart"></button>
           </div>
         </li>
         <li class="card">
           <img class="card__img" alt="Lago di Braies" src="./images/lago.png">
           <div class="card__handle">
             <h2 class="card__place">Lago di Braies</h2>
-            <button type="button" class="card__heart"></button>
+            <button aria-label="Like" type="button" class="card__heart"></button>
           </div>
         </li>
       </ul>
@@ -70,15 +71,15 @@
   <footer class="footer">
     <p class="footer__text">© 2022 Around The U.S.</p>
   </footer>
-  <div class="edit-form" name="edit-form">
+  <div class="edit-form">
     <div class="edit-form__container">
       <h2 class="edit-form__title">Edit profile</h2>
-      <form class="edit-form__form">
+      <form class="edit-form__form" name="edit-form">
         <input type="text" class="edit-form__person" id="edit-form-name">
         <input type="text" class="edit-form__person" id="edit-form-title">
         <button type="submit" class="edit-form__button">Save</button>
       </form>
-      <button type="button" alt="close button" class="edit-form__close"></button>
+      <button aria-label="Close" type="button" class="edit-form__close"></button>
     </div>
   </div>
   <script src="./scripts/index.js"></script>

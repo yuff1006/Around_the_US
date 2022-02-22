@@ -26,7 +26,7 @@ function handleProfileFormSubmit(evt) {
 
 
 editIcon.addEventListener("click", handleOpenForm)
-xButton.addEventListener("click", handleCloseForm)
+closeButton.addEventListener("click", handleCloseForm)
 formField.addEventListener("submit", handleProfileFormSubmit)
 
 
