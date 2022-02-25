@@ -1,0 +1,27 @@
+.edit-form__button {
+  background-color: black;
+  border-radius: 2px;
+  padding: 14px 124px;
+  color: white;
+  margin: 14px 36px 0px;
+  max-width: 358px;
+  box-sizing: border-box;
+  transition: opacity ease-out 0.3s;
+  font-size: 18px;
+  line-height: 1.2;
+  border: none;
+  cursor: pointer;
+}
+
+.edit-form__button:hover {
+  opacity: 0.8;
+}
+
+@media screen and (max-width: 600px) {
+  .edit-form__button {
+    max-width: 238px;
+    margin: 17px 22px 0px;
+    font-size: 14px;
+    padding: 14px 100px;
+  }
+}
