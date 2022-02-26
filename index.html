@@ -16,10 +16,10 @@
       <img alt="Jacques Cousteau's headshot" class="profile__pic" src="./images/profile__pic.jpg">
       <div class="profile__name-and-icon">
         <h1 class="profile__name">Jacques Cousteau</h1>
-        <button aria-label="Edit" type="button" class="profile__edit-icon"></button>
+        <button aria-label="Edit" type="button" class="profile__edit-icon" id="edit-icon"></button>
       </div>
       <p class="profile__title">Explorer</p>
-      <button aria-label="Add" type="button" class="profile__add-icon"></button>
+      <button aria-label="Add" type="button" class="profile__add-icon" id="add-icon"></button>
     </section>
     <section class="cards">
       <ul class="cards__container">
@@ -76,22 +76,23 @@
     <div class="edit-form__container">
       <h2 class="edit-form__title">Edit profile</h2>
       <form class="edit-form__form" name="edit-form">
-        <input type="text" class="edit-form__person" id="edit-form-name">
-        <input type="text" class="edit-form__person" id="edit-form-title">
+        <input type="text" class="edit-form__info" id="edit-form-name">
+        <input type="text" class="edit-form__info" id="edit-form-title">
         <button type="submit" class="edit-form__button">Save</button>
       </form>
-      <button aria-label="Close" type="button" class="edit-form__close"></button>
+      <button aria-label="Close" type="button" class="edit-form__close" id="edit-form-close-author"></button>
     </div>
   </div>
 
-  <div class="picture-form">
-    <div class="picture-form__container">
-      <h2 class="picture-form__title">New place</h2>
-      <form class="picture-form__form" name="picture-form">
-        <input type="text" class="picture-form__info" id="picture-form-title">
-        <input type="text" class="picture-form__info" id="picture-form-url">
-        <button type="submit" class="picture-form__button">Create</button>
+  <div class="edit-form edit-form_picture">
+    <div class="edit-form__container">
+      <h2 class="edit-form__title">New place</h2>
+      <form class="edit-form__form" name="edit-form">
+        <input type="text" class="edit-form__info" id="edit-form-title" placeholder="Title">
+        <input type="text" class="edit-form__info" id="edit-form-url" placeholder="Image Link">
+        <button type="submit" class="edit-form__button">Create</button>
       </form>
+      <button aria-label="Close" type="button" class="edit-form__close" id="edit-form-close-picture"></button>
     </div>
   </div>
 

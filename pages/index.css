@@ -14,9 +14,6 @@
 @import url('../blocks/footer/footer.css');
 /* edit-form blocks */
 @import url('../blocks/edit-form/edit-form.css');
-/* picture-form blocks */
-@import url('../blocks/picture-form/picture-form.css');
-
 /* header elements */
 @import url('../blocks/header/__logo/header__logo.css');
 
@@ -37,19 +34,11 @@
 @import url('../blocks/footer/__text/footer__text.css');
 /* edit-form elements */
 @import url('../blocks/edit-form/__title/edit-form__title.css');
-@import url('../blocks/edit-form/__person/edit-form__person.css');
+@import url('../blocks/edit-form/__info/edit-form__info.css');
 @import url('../blocks/edit-form/__button/edit-form__button.css');
-@import url('../blocks/edit-form/__container/edit-form__container.css');
 @import url('../blocks/edit-form/__container/edit-form__container.css');
 @import url('../blocks/edit-form/__close/edit-form__close.css');
 @import url('../blocks/edit-form/__form/edit-form__form.css');
-/* picture-form elements */
-@import url('../blocks/picture-form/__title/picture-form__title.css');
-@import url('../blocks/picture-form/__person/picture-form__person.css');
-@import url('../blocks/picture-form/__button/picture-form__button.css');
-@import url('../blocks/picture-form/__container/picture-form__container.css');
-@import url('../blocks/picture-form/__container/picture-form__container.css');
-@import url('../blocks/picture-form/__close/picture-form__close.css');
-@import url('../blocks/picture-form/__form/picture-form__form.css');
 /* edit-form modifier */
 @import url('../blocks/edit-form/_open/edit-form_open.css');
+
