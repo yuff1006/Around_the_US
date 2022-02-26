@@ -23,48 +23,7 @@
     </section>
     <section class="cards">
       <ul class="cards__container">
-        <li class="card">
-          <img class="card__img" alt="Yosemite Valley" src="./images/yosemite.png">
-          <div class="card__handle">
-            <h2 class="card__place">Yosemite Valley</h2>
-            <button aria-label="Like" type="button" class="card__heart"></button>
-          </div>
-        </li>
-        <li class="card">
-          <img class="card__img" alt="Lake Louise" src="./images/lake-louise.png">
-          <div class="card__handle">
-            <h2 class="card__place">Lake Louise</h2>
-            <button aria-label="Like" type="button" class="card__heart"></button>
-          </div>
-        </li>
-        <li class="card">
-          <img class="card__img" alt="Bald Mountains" src="./images/bald-mountains.png">
-          <div class="card__handle">
-            <h2 class="card__place">Bald Mountains</h2>
-            <button aria-label="Like" type="button" class="card__heart"></button>
-          </div>
-        </li>
-        <li class="card">
-          <img class="card__img" alt="Latemar" src="./images/latemar.png">
-          <div class="card__handle">
-            <h2 class="card__place">Latemar</h2>
-            <button aria-label="Like" type="button" class="card__heart"></button>
-          </div>
-        </li>
-        <li class="card">
-          <img class="card__img" alt="Vanoise National Park" src="./images/vanoise.png">
-          <div class="card__handle">
-            <h2 class="card__place">Vanoise National Park</h2>
-            <button aria-label="Like" type="button" class="card__heart"></button>
-          </div>
-        </li>
-        <li class="card">
-          <img class="card__img" alt="Lago di Braies" src="./images/lago.png">
-          <div class="card__handle">
-            <h2 class="card__place">Lago di Braies</h2>
-            <button aria-label="Like" type="button" class="card__heart"></button>
-          </div>
-        </li>
+
       </ul>
     </section>
   </main>
@@ -95,6 +54,16 @@
       <button aria-label="Close" type="button" class="edit-form__close" id="edit-form-close-picture"></button>
     </div>
   </div>
+
+  <template id="card">
+    <li class="card">
+      <img class="card__img" alt="" src="">
+      <div class="card__handle">
+        <h2 class="card__place"></h2>
+        <button aria-label="Like" type="button" class="card__heart"></button>
+      </div>
+    </li>
+  </template>
 
   <script src="./scripts/index.js"></script>
 </body>
