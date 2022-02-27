@@ -6,10 +6,15 @@ const closeButton = document.querySelector("#edit-form-close-author");
 const closeButtonPicture = document.querySelector("#edit-form-close-picture")
 const formName = document.querySelector("#edit-form-name");
 const formTitle = document.querySelector("#edit-form-title");
+const formPlace = document.querySelector("#edit-form-place");
+const formUrl = document.querySelector("#edit-form-url");
 const profileName = document.querySelector(".profile__name");
 const profileTitle = document.querySelector(".profile__title");
-const formField = document.querySelector(".edit-form__form");
+const formFieldAuthor = document.querySelector("#form-field-author");
+const formFieldPicture = document.querySelector("#form-field-picture");
 const cardsContainer = document.querySelector(".cards__container");
+const pictureTitle = document.querySelector("#edit-form-title");
+const pictureUrl = document.querySelector("#edit-form-url");
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -72,11 +77,21 @@ function handleProfileFormSubmit(evt) {
   closePopup(editForm);
 }
 
-addIcon.addEventListener("click", handleOpenForm)
+function handlePictureFormSubmit(evt) {
+  evt.preventDefault();
+  const newCard = {};
+  newCard.name = formPlace.value;
+  newCard.link = formUrl.value;
+  cardsContainer.prepend(createCard(newCard));
+  closePopup(pictureForm);
+}
+
+addIcon.addEventListener("click", handleOpenForm);
 editIcon.addEventListener("click", handleOpenForm);
 closeButton.addEventListener("click", handleCloseForm);
 closeButtonPicture.addEventListener("click", handleCloseForm);
-formField.addEventListener("submit", handleProfileFormSubmit);
+formFieldAuthor.addEventListener("submit", handleProfileFormSubmit);
+formFieldPicture.addEventListener("submit", handlePictureFormSubmit);
 
 // code for generating cards dynamically
 function createCard(item) {
