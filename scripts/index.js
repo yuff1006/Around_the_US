@@ -1,6 +1,6 @@
 const editIcon = document.querySelector(".profile__edit-icon");
 const addIcon = document.querySelector(".profile__add-icon");
-const editForm = document.querySelector(".edit-form");
+const editForm = document.querySelector("#edit-form");
 const pictureForm = document.querySelector(".edit-form_picture");
 const closeButton = document.querySelector("#edit-form-close-author");
 const closeButtonPicture = document.querySelector("#edit-form-close-picture")
