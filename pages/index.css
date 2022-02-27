@@ -30,6 +30,7 @@
 @import url('../blocks/card/__place/card__place.css');
 @import url('../blocks/card/__handle/card__handle.css');
 @import url('../blocks/card/__heart/card__heart.css');
+@import url('../blocks/card/__trash/card__trash.css');
 /* footer elements */
 @import url('../blocks/footer/__text/footer__text.css');
 /* edit-form elements */
@@ -41,4 +42,5 @@
 @import url('../blocks/edit-form/__form/edit-form__form.css');
 /* edit-form modifier */
 @import url('../blocks/edit-form/_open/edit-form_open.css');
+@import url('../blocks/card/__heart/_active/card__heart_active.css');
 

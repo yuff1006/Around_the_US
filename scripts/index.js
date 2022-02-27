@@ -15,6 +15,7 @@ const formFieldPicture = document.querySelector("#form-field-picture");
 const cardsContainer = document.querySelector(".cards__container");
 const pictureTitle = document.querySelector("#edit-form-title");
 const pictureUrl = document.querySelector("#edit-form-url");
+
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -95,6 +96,12 @@ formFieldPicture.addEventListener("submit", handlePictureFormSubmit);
 
 // code for generating cards dynamically
 function createCard(item) {
+  function heart(evt) {
+    evt.target.classList.toggle("card__heart_active");
+  }
+  function deleteCard(evt) {
+    evt.target.closest(".card").remove();
+  }
   const cardTemplate = document.querySelector("#card").content;
   const cardElement = cardTemplate.cloneNode(true);
   const cardImage = cardElement.querySelector(".card__img");
@@ -102,6 +109,10 @@ function createCard(item) {
   cardImage.alt = item.name;
   cardImage.src = item.link;
   cardTitle.textContent = item.name;
+  const heartButton = cardElement.querySelector(".card__heart");
+  heartButton.addEventListener("click", heart);
+  const trashButton = cardElement.querySelector(".card__trash");
+  trashButton.addEventListener("click", deleteCard)
   return cardElement;
 }
 
