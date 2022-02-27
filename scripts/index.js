@@ -15,7 +15,7 @@ const formFieldPicture = document.querySelector("#form-field-picture");
 const cardsContainer = document.querySelector(".cards__container");
 const pictureTitle = document.querySelector("#edit-form-title");
 const pictureUrl = document.querySelector("#edit-form-url");
-
+const popupPictureClose = document.querySelector(".edit-form__close_picture");
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -86,6 +86,11 @@ function handlePictureFormSubmit(evt) {
   cardsContainer.prepend(createCard(newCard));
   closePopup(pictureForm);
 }
+function picturePopupClose(evt) {
+  evt.target.closest("#picture-popup").classList.remove("edit-form_open");
+  const popupContainer = document.querySelector("#picture-popup");
+  popupContainer.querySelector(".edit-form__picture").remove();
+}
 
 addIcon.addEventListener("click", handleOpenForm);
 editIcon.addEventListener("click", handleOpenForm);
@@ -93,6 +98,7 @@ closeButton.addEventListener("click", handleCloseForm);
 closeButtonPicture.addEventListener("click", handleCloseForm);
 formFieldAuthor.addEventListener("submit", handleProfileFormSubmit);
 formFieldPicture.addEventListener("submit", handlePictureFormSubmit);
+popupPictureClose.addEventListener("click", picturePopupClose);
 
 // code for generating cards dynamically
 function createCard(item) {
@@ -102,22 +108,35 @@ function createCard(item) {
   function deleteCard(evt) {
     evt.target.closest(".card").remove();
   }
+  function picturePopup(evt) {
+    const popupContainer = document.querySelector("#picture-popup");
+    openPopup(popupContainer);
+    const popupPicture = document.createElement("img");
+    popupPicture.alt = evt.target.alt;
+    popupPicture.src = evt.target.src;
+    popupCaption.textContent = item.name;
+    popupPicture.classList.add("edit-form__picture");
+    popupCloseAndPicture = document.querySelector(".edit-form__close-and-picture");
+    popupCloseAndPicture.prepend(popupPicture);
+  }
   const cardTemplate = document.querySelector("#card").content;
   const cardElement = cardTemplate.cloneNode(true);
   const cardImage = cardElement.querySelector(".card__img");
   const cardTitle = cardElement.querySelector(".card__place");
+  const popupCaption = document.querySelector(".edit-form__popup-caption");
   cardImage.alt = item.name;
   cardImage.src = item.link;
   cardTitle.textContent = item.name;
   const heartButton = cardElement.querySelector(".card__heart");
   heartButton.addEventListener("click", heart);
   const trashButton = cardElement.querySelector(".card__trash");
-  trashButton.addEventListener("click", deleteCard)
+  trashButton.addEventListener("click", deleteCard);
+  cardImage.addEventListener("click", picturePopup);
   return cardElement;
 }
-
 initialCards.map(function(item) {
   const card = createCard(item);
   cardsContainer.append(card);
 });
+
 
