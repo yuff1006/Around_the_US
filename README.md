@@ -3,6 +3,13 @@
 ## About the Project
 Around The U.S. is a web app documenting pictures of destinations a user wants to display on their personal page.
 
+## Features of the Web App
+1. Interactive Like Button
+2. Dynamically generate cards of places through the add button
+3. Dynamically delete cards through interactive trash button
+4. Dynamically change author name and title through edit button
+5. Smooth transitions on hover and popup windows
+
 ## Technologies and Standards Used
 * HTML
 * CSS
