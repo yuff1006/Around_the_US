@@ -1,3 +1,4 @@
-.edit-form_open {
-    display: flex;
+.edit-form_open{
+    visibility: visible;
+    opacity: 1;
 }

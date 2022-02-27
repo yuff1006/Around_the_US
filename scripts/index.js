@@ -45,10 +45,13 @@ const initialCards = [
 
 function openPopup(form) {
   form.classList.add("edit-form_open");
+  form.style.transition = "visibility 0s, opacity 0.5s linear";
 }
 
 function closePopup(form) {
   form.classList.remove("edit-form_open");
+  form.style.transition = "opacity ease-out 0.5s, visibility 0s ease-out 0.5s";
+
 }
 
 function handleOpenForm(evt) {
@@ -86,10 +89,9 @@ function handlePictureFormSubmit(evt) {
   cardsContainer.prepend(createCard(newCard));
   closePopup(pictureForm);
 }
-function picturePopupClose(evt) {
-  evt.target.closest("#picture-popup").classList.remove("edit-form_open");
+function picturePopupClose() {
   const popupContainer = document.querySelector("#picture-popup");
-  popupContainer.querySelector(".edit-form__picture").remove();
+  closePopup(popupContainer);
 }
 
 addIcon.addEventListener("click", handleOpenForm);
@@ -117,6 +119,9 @@ function createCard(item) {
     popupCaption.textContent = item.name;
     popupPicture.classList.add("edit-form__picture");
     popupCloseAndPicture = document.querySelector(".edit-form__close-and-picture");
+    if (popupCloseAndPicture.children.length > 2) {
+      popupCloseAndPicture.querySelector(".edit-form__picture").remove();
+    }
     popupCloseAndPicture.prepend(popupPicture);
   }
   const cardTemplate = document.querySelector("#card").content;
