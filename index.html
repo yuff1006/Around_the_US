@@ -43,8 +43,8 @@
     <div class="edit-form__container">
       <h2 class="edit-form__title">Edit profile</h2>
       <form class="edit-form__form" id="form-field-author" name="edit-form">
-        <input type="text" class="edit-form__info" id="edit-form-name">
-        <input type="text" class="edit-form__info" id="edit-form-title">
+        <input type="text" class="edit-form__info" id="edit-form-name" required>
+        <input type="text" class="edit-form__info" id="edit-form-title" required>
         <button type="submit" class="edit-form__button">Save</button>
       </form>
       <button aria-label="Close" type="button" class="edit-form__close" id="edit-form-close-author"></button>
@@ -55,8 +55,8 @@
     <div class="edit-form__container">
       <h2 class="edit-form__title">New place</h2>
       <form class="edit-form__form" id="form-field-picture" name="edit-form">
-        <input type="text" class="edit-form__info" id="edit-form-place" placeholder="Title">
-        <input type="text" class="edit-form__info" id="edit-form-url" placeholder="Image Link">
+        <input type="text" class="edit-form__info" id="edit-form-place" placeholder="Title" required>
+        <input type="text" class="edit-form__info" id="edit-form-url" placeholder="Image Link" required>
         <button type="submit" class="edit-form__button">Create</button>
       </form>
       <button aria-label="Close" type="button" class="edit-form__close" id="edit-form-close-picture"></button>
