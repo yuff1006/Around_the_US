@@ -58,13 +58,10 @@ const initialCards = [
 // functions to open and close the author and add picture forms
 function openPopup(form) {
   form.classList.add("edit-form_open");
-  form.style.transition = "visibility 0s, opacity 0.5s linear";
 }
 
 function closePopup(form) {
   form.classList.remove("edit-form_open");
-  form.style.transition = "opacity ease-out 0.5s, visibility 0s ease-out 0.5s";
-
 }
 function handleOpenProfileForm() {
   profileFormName.value = profileName.textContent;
