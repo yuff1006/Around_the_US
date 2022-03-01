@@ -5,9 +5,7 @@ const addIcon = document.querySelector(".profile__add-icon");
 const editProfileForm = document.querySelector("#edit-form");
 const addPictureForm = document.querySelector(".edit-form_picture");
 // author, add pictures forms close buttons and popup picture close button
-const closeButtonAuthor = document.querySelector("#edit-form-close-author");
-const closeButtonPicture = document.querySelector("#edit-form-close-picture");
-const popupPictureClose = document.querySelector(".edit-form__close_picture");
+const closePopupButtons = document.querySelectorAll(".edit-form__close");
 // profile form two fields
 const profileFormName = document.querySelector("#edit-form-name");
 const profileFormTitle = document.querySelector("#edit-form-title");
@@ -56,13 +54,20 @@ const initialCards = [
   }
 ];
 // functions to open and close the author and add picture forms
-function openPopup(form) {
-  form.classList.add("edit-form_open");
+function openPopup(popup) {
+  popup.classList.add("edit-form_open");
 }
 
-function closePopup(form) {
-  form.classList.remove("edit-form_open");
+function closePopup(popup) {
+  popup.classList.remove("edit-form_open");
 }
+
+closePopupButtons.forEach((button)=> {
+  button.addEventListener("click", function() {
+    popupWindow = button.closest(".edit-form");
+    closePopup(popupWindow)
+  })
+})
 function handleOpenProfileForm() {
   profileFormName.value = profileName.textContent;
   profileFormTitle.value = profileTitle.textContent;
@@ -70,12 +75,6 @@ function handleOpenProfileForm() {
 }
 function handleOpenAddPictureForm() {
   openPopup(addPictureForm);
-}
-function handleCloseProfileForm() {
-  closePopup(editProfileForm);
-}
-function handleCloseAddPictureForm() {
-  closePopup(addPictureForm);
 }
 //functions to handle author and add picture form results
 function handleProfileFormSubmit(evt) {
@@ -99,17 +98,11 @@ function openPicturePopup(evt) {
   popupPicture.src = evt.target.src;
   popupCaption.textContent = evt.target.alt;
 }
-function closePicturePopup() {
-  closePopup(popupContainer);
-}
 //buttons for author, add picture, submit buttons for both and popup trigger's event listeners
 addIcon.addEventListener("click", handleOpenAddPictureForm);
 editIcon.addEventListener("click", handleOpenProfileForm);
-closeButtonAuthor.addEventListener("click", handleCloseProfileForm);
-closeButtonPicture.addEventListener("click", handleCloseAddPictureForm);
 formFieldAuthor.addEventListener("submit", handleProfileFormSubmit);
 formFieldPicture.addEventListener("submit", handlePictureFormSubmit);
-popupPictureClose.addEventListener("click", closePicturePopup);
 
 // code for generating cards dynamically
 function createCard(item) {

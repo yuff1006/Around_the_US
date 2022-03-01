@@ -1,4 +1,5 @@
 .edit-form_open{
     visibility: visible;
     opacity: 1;
+    transition: visibility 0.5s, opacity 0.5s;
 }
