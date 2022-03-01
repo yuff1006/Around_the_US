@@ -26,7 +26,9 @@ const pictureUrl = document.querySelector("#edit-form-url");
 const popupContainer = document.querySelector("#picture-popup");
 const popupCaption = document.querySelector(".edit-form__popup-caption");
 const popupPicture = document.querySelector(".edit-form__picture");
-popupCloseAndPicture = document.querySelector(".edit-form__close-and-picture");
+const popupCloseAndPicture = document.querySelector(".edit-form__close-and-picture");
+// template element
+const cardTemplate = document.querySelector("#card").content;
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -65,7 +67,7 @@ function closePopup(popup) {
 closePopupButtons.forEach((button)=> {
   button.addEventListener("click", function() {
     popupWindow = button.closest(".edit-form");
-    closePopup(popupWindow)
+    closePopup(popupWindow);
   })
 })
 function handleOpenProfileForm() {
@@ -83,57 +85,53 @@ function handleProfileFormSubmit(evt) {
   profileTitle.textContent = profileFormTitle.value;
   closePopup(editProfileForm);
 }
+function renderCard(card) {
+  cardsContainer.prepend(createCard(card));
+}
 function handlePictureFormSubmit(evt) {
   evt.preventDefault();
-  const newCard = {};
-  newCard.name = pictureFormPlace.value;
-  newCard.link = pictureFormURL.value;
-  cardsContainer.prepend(createCard(newCard));
+  const card = {};
+  card.name = pictureFormPlace.value;
+  card.link = pictureFormURL.value;
+  renderCard(card);
   closePopup(addPictureForm);
 }
 //functions to handle popup pictures close and open
 function openPicturePopup(evt) {
-  openPopup(popupContainer);
   popupPicture.alt = evt.target.alt;
   popupPicture.src = evt.target.src;
   popupCaption.textContent = evt.target.alt;
+  openPopup(popupContainer);
 }
-//buttons for author, add picture, submit buttons for both and popup trigger's event listeners
-addIcon.addEventListener("click", handleOpenAddPictureForm);
-editIcon.addEventListener("click", handleOpenProfileForm);
-formFieldAuthor.addEventListener("submit", handleProfileFormSubmit);
-formFieldPicture.addEventListener("submit", handlePictureFormSubmit);
-
+// interactivity for like button
+function handleLike(evt) {
+  evt.target.classList.toggle("card__heart_active");
+}
+// function to delete cards using trash icon
+function deleteCard(evt) {
+  evt.target.closest(".card").remove();
+}
 // code for generating cards dynamically
 function createCard(item) {
-  const cardTemplate = document.querySelector("#card").content;
   const cardElement = cardTemplate.cloneNode(true);
   const cardImage = cardElement.querySelector(".card__img");
   const cardTitle = cardElement.querySelector(".card__place");
   cardImage.alt = item.name;
   cardImage.src = item.link;
   cardTitle.textContent = item.name;
-  // interactivity for like button
-  function handleLike(evt) {
-    evt.target.classList.toggle("card__heart_active");
-  }
   const heartButton = cardElement.querySelector(".card__heart");
   heartButton.addEventListener("click", handleLike);
-  // function to delete cards using trash icon
-  function deleteCard(evt) {
-    evt.target.closest(".card").remove();
-  }
   const trashButton = cardElement.querySelector(".card__trash");
   trashButton.addEventListener("click", deleteCard);
-  // event listener for picture popup
   cardImage.addEventListener("click", openPicturePopup);
-  // generate single card
   return cardElement;
 }
+//buttons for author, add picture, submit buttons for both and popup trigger's event listeners
+addIcon.addEventListener("click", handleOpenAddPictureForm);
+editIcon.addEventListener("click", handleOpenProfileForm);
+formFieldAuthor.addEventListener("submit", handleProfileFormSubmit);
+formFieldPicture.addEventListener("submit", handlePictureFormSubmit);
 //generate all six cards and append them to the card container
-initialCards.map(function(item) {
-  const card = createCard(item);
-  cardsContainer.append(card);
+initialCards.map((item)=> {
+  cardsContainer.append(createCard(item));
 });
-
-
