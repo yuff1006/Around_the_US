@@ -5,7 +5,7 @@ const addIcon = document.querySelector(".profile__add-icon");
 const editProfileForm = document.querySelector("#edit-form");
 const addPictureForm = document.querySelector(".edit-form_picture");
 // author, add pictures forms close buttons and popup picture close button
-const closePopupButtons = document.querySelectorAll(".edit-form__close");
+const closePopupButtons = Array.from(document.querySelectorAll(".edit-form__close"));
 // profile form two fields
 const profileFormName = document.querySelector("#edit-form-name");
 const profileFormTitle = document.querySelector("#edit-form-title");
