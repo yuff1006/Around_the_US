@@ -43,9 +43,11 @@
 @import url('../blocks/edit-form/__close-and-picture/edit-form__close-and-picture.css');
 @import url('../blocks/edit-form/__picture/edit-form__picture.css');
 @import url('../blocks/edit-form/__popup-caption/edit-form__popup-caption.css');
+@import url('../blocks/edit-form/__error/edit-form__error.css');
 /* edit-form modifier */
 @import url('../blocks/edit-form/_open/edit-form_open.css');
 @import url('../blocks/card/__heart/_active/card__heart_active.css');
 @import url('../blocks/edit-form/__close/_picture/edit-form__close_picture.css');
-
+@import url('../blocks/edit-form/__info/_type/edit-form__info_type_error.css');
+@import url('../blocks/edit-form/__error/_visible/edit-form__error_visible.css');
 
