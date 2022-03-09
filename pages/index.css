@@ -50,4 +50,5 @@
 @import url('../blocks/edit-form/__close/_picture/edit-form__close_picture.css');
 @import url('../blocks/edit-form/__info/_type/edit-form__info_type_error.css');
 @import url('../blocks/edit-form/__error/_visible/edit-form__error_visible.css');
+@import url('../blocks/edit-form/__button/_invalid/edit-form__button_invalid.css');
 
