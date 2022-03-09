@@ -9,6 +9,8 @@ const settings = {
   errorClass: "edit-form__error_visible"
 }
 
+
+
 function enableValidator() {
   // getting all the forms in the whole page
   const formList = Array.from(document.querySelectorAll(`${settings.formSelector}`));
@@ -26,9 +28,11 @@ function enableValidator() {
 // inputs within each of these forms
 function setEventListeners(formEl) {
   const inputList = Array.from(formEl.querySelectorAll(`${settings.inputSelector}`));
+  const buttonElement = formEl.querySelector(`${settings.submitButtonSelector}`);
   inputList.forEach((inputEl)=> {
     inputEl.addEventListener("input", ()=> {
       checkInputValidity(inputEl, formEl);
+      toggleButtonState(inputList, buttonElement);
     })
   })
 };
@@ -59,8 +63,26 @@ function showInputError(inputEl, formEl) {
 
 function hideInputError(inputEl, formEl) {
   inputEl.classList.remove(`${settings.inputErrorClass}`);
-}
-// enableValidation(
+  const inputId = inputEl.id;
+  const spanSlot = formEl.querySelector(`#${inputId}-error`);
+  spanSlot.textContent = "";
+  spanSlot.classList.remove(`${settings.errorClass}`);
+};
 
-// );
+function hasInvalidInput(inputList) {
+  return inputList.some((inputEl)=> {
+    return !inputEl.validity.valid;
+  })
+}
+function toggleButtonState(inputList, buttonElement) {
+  if (hasInvalidInput(inputList) === true) {
+    buttonElement.classList.add("edit-form__button_invalid")
+  }
+  else if (hasInvalidInput(inputList) === false) {
+    buttonElement.classList.remove("edit-form__button_invalid")
+  }
+}
+
+
+
 enableValidator();

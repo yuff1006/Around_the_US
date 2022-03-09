@@ -1,7 +1,7 @@
 .edit-form__close {
   position: relative;
-  bottom: 340px;
-  left: 420px;
+  bottom: 99%;
+  left: 99%;
   transition: opacity 0.3s ease-out;
   cursor: pointer;
   background-color: transparent;
