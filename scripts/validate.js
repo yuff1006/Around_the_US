@@ -81,10 +81,10 @@ function hasInvalidInput(inputList) {
   })
 };
 function toggleButtonState(inputList, buttonElement) {
-  if (hasInvalidInput(inputList) === true) {
+  if (hasInvalidInput(inputList)) {
     buttonElement.classList.add("edit-form__button_invalid");
   }
-  else if (hasInvalidInput(inputList) === false) {
+  else {
     buttonElement.classList.remove("edit-form__button_invalid");
   }
 };
