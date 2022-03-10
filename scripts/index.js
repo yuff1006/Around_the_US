@@ -1,3 +1,5 @@
+import { resetValidation } from "./validate.js";
+
 // profile icons
 const editIcon = document.querySelector(".profile__edit-icon");
 const addIcon = document.querySelector(".profile__add-icon");
@@ -6,6 +8,7 @@ const editProfileForm = document.querySelector("#edit-form");
 const addPictureForm = document.querySelector(".edit-form_picture");
 // author, add pictures forms close buttons and popup picture close button
 const closePopupButtons = Array.from(document.querySelectorAll(".edit-form__close"));
+const overlays = Array.from(document.querySelectorAll(".edit-form"));
 // profile form two fields
 const profileFormName = document.querySelector("#edit-form-name");
 const profileFormTitle = document.querySelector("#edit-form-title");
@@ -20,13 +23,10 @@ const formFieldAuthor = document.querySelector("#form-field-author");
 const formFieldPicture = document.querySelector("#form-field-picture");
 // cards and card title, card URL
 const cardsContainer = document.querySelector(".cards__container");
-const pictureTitle = document.querySelector("#edit-form-title");
-const pictureUrl = document.querySelector("#edit-form-url");
 // picture popup container, caption, picture and close container
 const popupContainer = document.querySelector("#picture-popup");
 const popupCaption = document.querySelector(".edit-form__popup-caption");
 const popupPicture = document.querySelector(".edit-form__picture");
-const popupCloseAndPicture = document.querySelector(".edit-form__close-and-picture");
 // template element
 const cardTemplate = document.querySelector("#card").content;
 const initialCards = [
@@ -63,19 +63,37 @@ function openPopup(popup) {
 function closePopup(popup) {
   popup.classList.remove("edit-form_open");
 }
-
+// Three ways to close the edit-form:
+// 1) click on the close button
 closePopupButtons.forEach((button)=> {
   button.addEventListener("click", function() {
-    popupWindow = button.closest(".edit-form");
-    closePopup(popupWindow);
+    closePopup(button.closest(".edit-form"));
   })
-})
+});
+// 2) click on the overlay
+overlays.forEach((overlay)=> {
+  overlay.addEventListener("click", (evt)=> {
+    closePopup(evt.target);
+  })
+});
+// 3) hit ESC key
+document.addEventListener("keydown", function(evt) {
+  if (evt.key === "Escape") {
+    overlays.forEach((overlay)=> {
+      closePopup(overlay);
+    })
+  }
+});
+
 function handleOpenProfileForm() {
   profileFormName.value = profileName.textContent;
   profileFormTitle.value = profileTitle.textContent;
+  resetValidation(editProfileForm);
   openPopup(editProfileForm);
 }
 function handleOpenAddPictureForm() {
+  resetValidation(addPictureForm);
+  formFieldPicture.reset();
   openPopup(addPictureForm);
 }
 //functions to handle author and add picture form results
