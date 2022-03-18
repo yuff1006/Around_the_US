@@ -31,43 +31,43 @@
     <p class="footer__text">&copy 2022 Around The U.S.</p>
   </footer>
 
-  <div class="edit-form" id="picture-popup">
-    <div class="edit-form__close-and-picture">
-      <img alt=" " src=" " class="edit-form__picture">
-      <button aria-label="Close" type="button" class="edit-form__close edit-form__close_picture" id="picture-popup-close"></button>
-      <h2 class="edit-form__popup-caption"></h2>
+  <div class="popup" id="picture-popup">
+    <div class="popup__close-and-picture">
+      <img alt=" " src=" " class="popup__picture">
+      <button aria-label="Close" type="button" class="popup__close popup__close_picture" id="picture-popup-close"></button>
+      <h2 class="popup__popup-caption"></h2>
     </div>
   </div>
 
-  <div class="edit-form" id="edit-form">
-    <div class="edit-form__container">
-      <h2 class="edit-form__title">Edit profile</h2>
-      <form class="edit-form__form" id="form-field-author" name="edit-form-author">
-        <input type="text" class="edit-form__info" id="edit-form-name"
+  <div class="popup" id="popup">
+    <div class="popup__container">
+      <h2 class="popup__title">Edit profile</h2>
+      <form class="popup__form" id="form-field-author" name="popup-author">
+        <input type="text" class="popup__info" id="popup-name"
         required minlength="2" maxlength="40">
-        <span class="edit-form__error" id="edit-form-name-error"></span>
-        <input type="text" class="edit-form__info" id="edit-form-title"
+        <span class="popup__error" id="popup-name-error"></span>
+        <input type="text" class="popup__info" id="popup-title"
         required minlength="2" maxlength="200">
-        <span class="edit-form__error" id="edit-form-title-error"></span>
-        <button type="submit" class="edit-form__button">Save</button>
+        <span class="popup__error" id="popup-title-error"></span>
+        <button type="submit" class="popup__button">Save</button>
       </form>
-      <button aria-label="Close" type="button" class="edit-form__close" id="edit-form-close-author"></button>
+      <button aria-label="Close" type="button" class="popup__close" id="popup-close-author"></button>
     </div>
   </div>
 
-  <div class="edit-form edit-form_picture">
-    <div class="edit-form__container">
-      <h2 class="edit-form__title">New place</h2>
-      <form class="edit-form__form" id="form-field-picture" name="edit-form-picture">
-        <input type="text" class="edit-form__info" id="edit-form-place" placeholder="Title"
+  <div class="popup popup_picture">
+    <div class="popup__container">
+      <h2 class="popup__title">New place</h2>
+      <form class="popup__form" id="form-field-picture" name="popup-picture">
+        <input type="text" class="popup__info" id="popup-place" placeholder="Title"
         required minlength="1" maxlength="30">
-        <span class="edit-form__error" id="edit-form-place-error"></span>
-        <input class="edit-form__info" id="edit-form-url" placeholder="Image Link"
+        <span class="popup__error" id="popup-place-error"></span>
+        <input class="popup__info" id="popup-url" placeholder="Image Link"
         required type="url">
-        <span class="edit-form__error" id="edit-form-url-error"></span>
-        <button type="submit" class="edit-form__button">Create</button>
+        <span class="popup__error" id="popup-url-error"></span>
+        <button type="submit" class="popup__button">Create</button>
       </form>
-      <button aria-label="Close" type="button" class="edit-form__close" id="edit-form-close-picture"></button>
+      <button aria-label="Close" type="button" class="popup__close" id="popup-close-picture"></button>
     </div>
   </div>
 
