@@ -68,12 +68,12 @@ const initialCards = [
 // functions to open and close the author and add picture forms
 function openPopup(popup) {
   popup.classList.add("popup_open");
-  document.addEventListener("keyup", listenForEsc);
+  document.addEventListener("keyup", listenForEsc)
 }
 
 function closePopup(popup) {
-  popup.classList.remove("popup_open");
   document.removeEventListener("keyup", listenForEsc);
+  popup.classList.remove("popup_open");
 }
 // Three ways to close the popup:
 // 1) mouseup on the close button
@@ -89,18 +89,16 @@ overlays.forEach((overlay)=> {
   })
 });
 // 3) hit ESC key
-function listenForEsc() {
-  document.addEventListener("keyup", function(evt) {
-    if (evt.key === "Escape") {
-      overlays.forEach((overlay)=> {
-        if (overlay.classList.contains("popup_open")) {
-          closePopup(overlay);
-        }
-      })
-    }
-  })
-};
 
+function listenForEsc(evt) {
+  if (evt.key === "Escape") {
+    overlays.forEach((overlay)=> {
+      if (overlay.classList.contains("popup_open")) {
+        closePopup(overlay);
+      }
+    })
+  }
+}
 function fillProfileForm() {
   profileFormName.value = profileName.textContent;
   profileFormTitle.value = profileTitle.textContent;
