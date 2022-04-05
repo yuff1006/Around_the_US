@@ -1,5 +1,5 @@
 import { resetValidation } from "./validate.js";
-import { Card } from "./Card.js";
+import Card from "./Card.js";
 import * as popup from "./utils.js";
 
 // profile icons
@@ -28,7 +28,7 @@ const formFieldPicture = document.querySelector("#form-field-picture");
 // cards and card title, card URL
 const cardsContainer = document.querySelector(".cards__container");
 // template element
-const cardTemplate = document.querySelector("#card").content;
+
 const settings = {
   formSelector: ".popup__form",
   inputSelector: ".popup__info",
@@ -135,13 +135,18 @@ addIcon.addEventListener("mouseup", handleOpenAddPictureForm);
 editIcon.addEventListener("mouseup", handleOpenProfileForm);
 formFieldAuthor.addEventListener("submit", handleProfileFormSubmit);
 formFieldPicture.addEventListener("submit", handlePictureFormSubmit);
+const cardSelector = document
+  .querySelector("#card")
+  .content.querySelector(".card");
+
 // when new card is created, render another card
-(function renderCard(cardData, templateEl) {
-  const card = new Card(cardData, templateEl).createCard(cardData);
+(function renderCard(cardData, cardSelector) {
+  const card = new Card(cardData, cardSelector).createCard(cardData);
   cardsContainer.prepend(card);
 });
 //generate all six cards and append them to the card container
+
 initialCards.forEach((cardData) => {
-  const card = new Card(cardData, cardTemplate);
+  const card = new Card(cardData, cardSelector);
   cardsContainer.append(card.createCard(cardData));
 });

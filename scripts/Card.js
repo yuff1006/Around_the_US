@@ -1,17 +1,17 @@
-export class Card {
-  constructor(cardData, templateEl) {
+class Card {
+  constructor(cardData, cardSelector) {
     this._imageLink = cardData.link;
     this._text = cardData.name;
-    this._cardElement = templateEl.cloneNode(true);
+    this._cardElement = cardSelector.cloneNode(true);
   }
   _setEventListeners() {
     const heartButton = this._cardElement.querySelector(".card__heart");
-    heartButton.addEventListener("mouseup", () => {
-      this._handleLike();
+    heartButton.addEventListener("mouseup", (evt) => {
+      this._handleLike(evt);
     });
     const trashButton = this._cardElement.querySelector(".card__trash");
-    trashButton.addEventListener("mouseup", () => {
-      this._deleteCard();
+    trashButton.addEventListener("mouseup", (evt) => {
+      this._deleteCard(evt);
     });
   }
   _handleLike(evt) {
@@ -31,3 +31,5 @@ export class Card {
     return this._cardElement;
   }
 }
+
+export default Card;
