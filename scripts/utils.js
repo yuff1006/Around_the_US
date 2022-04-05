@@ -9,4 +9,3 @@ function openPicturePopup(evt) {
   popupCaption.textContent = evt.target.alt;
   openPopup(popupContainer);
 }
-// export * from "./utils.js";

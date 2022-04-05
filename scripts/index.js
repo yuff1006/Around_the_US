@@ -120,13 +120,18 @@ function handleProfileFormSubmit(evt) {
   closePopup(editProfileForm);
 }
 
+// when new card is created, render another card
+function renderCard(cardData, cardSelector) {
+  const renderedCard = new Card(cardData, cardSelector).createCard(cardData);
+  cardsContainer.prepend(renderedCard);
+}
 function handlePictureFormSubmit(evt) {
   evt.preventDefault();
   const cardData = {
     name: pictureFormPlace.value,
     link: pictureFormURL.value,
   };
-  renderCard(cardData, cardTemplate);
+  renderCard(cardData, cardSelector);
   closePopup(addPictureForm);
 }
 
@@ -139,11 +144,6 @@ const cardSelector = document
   .querySelector("#card")
   .content.querySelector(".card");
 
-// when new card is created, render another card
-(function renderCard(cardData, cardSelector) {
-  const card = new Card(cardData, cardSelector).createCard(cardData);
-  cardsContainer.prepend(card);
-});
 //generate all six cards and append them to the card container
 
 initialCards.forEach((cardData) => {
