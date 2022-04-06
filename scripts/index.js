@@ -1,7 +1,7 @@
 import { resetValidation } from "./validate.js";
 import Card from "./Card.js";
 import * as popup from "./utils.js";
-
+import FormValidator from "./FormValidator.js";
 // profile icons
 const editIcon = document.querySelector(".profile__edit-icon");
 const addIcon = document.querySelector(".profile__add-icon");
@@ -65,6 +65,14 @@ const initialCards = [
     link: "https://code.s3.yandex.net/web-code/lago.jpg",
   },
 ];
+// // getting all the forms in the whole page
+// const formList = [...document.querySelectorAll(settings.formSelector)];
+// // iterate over this array of all forms
+// formList.forEach((formEl) => {
+//   const formValidated = new FormValidator(settings, formEl);
+//   formValidated.enableValidator();
+// });
+
 // functions to open and close the author and add picture forms
 function openPopup(popup) {
   popup.classList.add("popup_open");
@@ -104,12 +112,14 @@ function fillProfileForm() {
 
 function handleOpenProfileForm() {
   fillProfileForm();
-  resetValidation(settings, editProfileForm);
+  const addProfileFormValidated = new FormValidator(settings, editProfileForm);
+  addProfileFormValidated.enableValidator();
   openPopup(editProfileForm);
 }
 function handleOpenAddPictureForm() {
   formFieldPicture.reset();
-  resetValidation(settings, addPictureForm);
+  const addPictureFormValidated = new FormValidator(settings, addPictureForm);
+  addPictureFormValidated.enableValidator();
   openPopup(addPictureForm);
 }
 //functions to handle author and add picture form results
@@ -120,11 +130,6 @@ function handleProfileFormSubmit(evt) {
   closePopup(editProfileForm);
 }
 
-// when new card is created, render another card
-function renderCard(cardData, cardSelector) {
-  const renderedCard = new Card(cardData, cardSelector).createCard(cardData);
-  cardsContainer.prepend(renderedCard);
-}
 function handlePictureFormSubmit(evt) {
   evt.preventDefault();
   const cardData = {
@@ -144,6 +149,11 @@ const cardSelector = document
   .querySelector("#card")
   .content.querySelector(".card");
 
+// when new card is created, render another card
+function renderCard(cardData, cardSelector) {
+  const renderedCard = new Card(cardData, cardSelector).createCard(cardData);
+  cardsContainer.prepend(renderedCard);
+}
 //generate all six cards and append them to the card container
 
 initialCards.forEach((cardData) => {
