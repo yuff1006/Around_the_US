@@ -32,17 +32,18 @@ function fillProfileForm() {
   profileFormName.value = profileName.textContent;
   profileFormTitle.value = profileTitle.textContent;
 }
-
+const addProfileFormValidated = new FormValidator(settings, editProfileForm);
+addProfileFormValidated.enableValidator();
 function handleOpenProfileForm() {
   fillProfileForm();
-  const addProfileFormValidated = new FormValidator(settings, editProfileForm);
-  addProfileFormValidated.enableValidator();
+  addProfileFormValidated.resetValidation();
   openPopup(editProfileForm);
 }
+const addPictureFormValidated = new FormValidator(settings, addPictureForm);
+addPictureFormValidated.enableValidator();
 function handleOpenAddPictureForm() {
   formFieldPicture.reset();
-  const addPictureFormValidated = new FormValidator(settings, addPictureForm);
-  addPictureFormValidated.enableValidator();
+  addPictureFormValidated.resetValidation();
   openPopup(addPictureForm);
 }
 //functions to handle author and add picture form results

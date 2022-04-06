@@ -61,9 +61,14 @@ class FormValidator {
       // for all forms, we need to set event listeners
     });
     this._setEventListeners(inputList, buttonElement);
-    this._resetValidation(inputList, buttonElement);
   }
-  _resetValidation(inputList, buttonElement) {
+  resetValidation() {
+    const inputList = [
+      ...this._formEl.querySelectorAll(this._settings.inputSelector),
+    ];
+    const buttonElement = this._formEl.querySelector(
+      this._settings.submitButtonSelector
+    );
     inputList.forEach((inputEl) => {
       this._hideInputError(inputEl);
     });
