@@ -3,6 +3,7 @@ import { openPopup } from "./utils.js";
 const popupContainer = document.querySelector("#picture-popup");
 const popupCaption = document.querySelector(".popup__popup-caption");
 const popupPicture = document.querySelector(".popup__picture");
+
 class Card {
   constructor(cardData, cardSelector) {
     this._imageLink = cardData.link;
@@ -15,15 +16,16 @@ class Card {
       this._handleLike(evt);
     });
     const trashButton = this._cardElement.querySelector(".card__trash");
-    trashButton.addEventListener("mouseup", (evt) => {
-      this._deleteCard(evt);
+    trashButton.addEventListener("mouseup", () => {
+      this._deleteCard();
     });
   }
   _handleLike(evt) {
     evt.target.classList.toggle("card__heart_active");
   }
-  _deleteCard(evt) {
-    evt.target.closest(".card").remove();
+  _deleteCard() {
+    this._cardElement.remove();
+    this._cardElement = null;
   }
 
   createCard(cardData) {

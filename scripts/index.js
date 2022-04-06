@@ -1,33 +1,78 @@
 import Card from "./Card.js";
-import { cardsContainer, cardSelector } from "./utils.js";
+import {
+  cardsContainer,
+  cardSelector,
+  openPopup,
+  closePopup,
+} from "./utils.js";
+import { initialCards, settings } from "./constants.js";
+import FormValidator from "./FormValidator.js";
 
-const initialCards = [
-  {
-    name: "Yosemite Valley",
-    link: "https://code.s3.yandex.net/web-code/yosemite.jpg",
-  },
-  {
-    name: "Lake Louise",
-    link: "https://code.s3.yandex.net/web-code/lake-louise.jpg",
-  },
-  {
-    name: "Bald Mountains",
-    link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg",
-  },
-  {
-    name: "Latemar",
-    link: "https://code.s3.yandex.net/web-code/latemar.jpg",
-  },
-  {
-    name: "Vanoise National Park",
-    link: "https://code.s3.yandex.net/web-code/vanoise.jpg",
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://code.s3.yandex.net/web-code/lago.jpg",
-  },
-];
+// profile icons
+const editIcon = document.querySelector(".profile__edit-icon");
+const addIcon = document.querySelector(".profile__add-icon");
+// author, add picture forms
+const editProfileForm = document.querySelector("#popup");
+const addPictureForm = document.querySelector(".popup_picture");
 
+// profile form two fields
+const profileFormName = document.querySelector("#popup-name");
+const profileFormTitle = document.querySelector("#popup-title");
+// add picture form two fields
+const pictureFormPlace = document.querySelector("#popup-place");
+const pictureFormURL = document.querySelector("#popup-url");
+// profile display
+const profileName = document.querySelector(".profile__name");
+const profileTitle = document.querySelector(".profile__title");
+// form fields for the author form and the add picture form
+const formFieldAuthor = document.querySelector("#form-field-author");
+const formFieldPicture = document.querySelector("#form-field-picture");
+
+function fillProfileForm() {
+  profileFormName.value = profileName.textContent;
+  profileFormTitle.value = profileTitle.textContent;
+}
+
+function handleOpenProfileForm() {
+  fillProfileForm();
+  const addProfileFormValidated = new FormValidator(settings, editProfileForm);
+  addProfileFormValidated.enableValidator();
+  openPopup(editProfileForm);
+}
+function handleOpenAddPictureForm() {
+  formFieldPicture.reset();
+  const addPictureFormValidated = new FormValidator(settings, addPictureForm);
+  addPictureFormValidated.enableValidator();
+  openPopup(addPictureForm);
+}
+//functions to handle author and add picture form results
+function handleProfileFormSubmit(evt) {
+  evt.preventDefault();
+  profileName.textContent = profileFormName.value;
+  profileTitle.textContent = profileFormTitle.value;
+  closePopup(editProfileForm);
+}
+
+function handlePictureFormSubmit(evt) {
+  evt.preventDefault();
+  const cardData = {
+    name: pictureFormPlace.value,
+    link: pictureFormURL.value,
+  };
+  renderCard(cardData, cardSelector);
+  closePopup(addPictureForm);
+}
+// when new card is created, render another card
+function renderCard(cardData, cardSelector) {
+  const renderedCard = new Card(cardData, cardSelector).createCard(cardData);
+  cardsContainer.prepend(renderedCard);
+}
+
+//buttons for author, add picture, submit buttons for both and popup trigger's event listeners
+addIcon.addEventListener("mouseup", handleOpenAddPictureForm);
+editIcon.addEventListener("mouseup", handleOpenProfileForm);
+formFieldAuthor.addEventListener("submit", handleProfileFormSubmit);
+formFieldPicture.addEventListener("submit", handlePictureFormSubmit);
 //generate all six cards and append them to the card container
 
 initialCards.forEach((cardData) => {
