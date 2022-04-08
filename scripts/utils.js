@@ -4,7 +4,7 @@ const closePopupButtons = Array.from(
 );
 const overlays = Array.from(document.querySelectorAll(".popup"));
 export const cardsContainer = document.querySelector(".cards__container");
-export const cardSelector = document.querySelector("#card");
+export const cardSelector = "#card";
 export function openPopup(popup) {
   popup.classList.add("popup_open");
   document.addEventListener("keyup", listenForEsc);

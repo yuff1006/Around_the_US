@@ -8,13 +8,13 @@ class Card {
   constructor(cardData, cardSelector) {
     this._imageLink = cardData.link;
     this._text = cardData.name;
-    this._cardElement = cardSelector;
+    this._cardSelector = cardSelector;
   }
   _getTemplate() {
-    this._cardElement = this._cardElement.content
-      .querySelector(".card")
+    return document
+      .querySelector(this._cardSelector)
+      .content.querySelector(".card")
       .cloneNode(true);
-    return this._cardElement;
   }
   _setEventListeners() {
     const heartButton = this._cardElement.querySelector(".card__heart");
@@ -35,7 +35,7 @@ class Card {
   }
 
   createCard(cardData) {
-    this._getTemplate();
+    this._cardElement = this._getTemplate();
     const cardImage = this._cardElement.querySelector(".card__img");
     const cardTitle = this._cardElement.querySelector(".card__place");
     cardImage.alt = cardData.name;
