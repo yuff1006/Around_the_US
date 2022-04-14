@@ -1,13 +1,19 @@
-import Card from "./Card.js";
+import "./index.css";
+import headerLogo from "../images/header__logo.svg";
+import profilePic from "../images/profile__pic.jpg";
+import Card from "../scripts/Card.js";
 import {
   cardsContainer,
   cardSelector,
   openPopup,
   closePopup,
-} from "./utils.js";
-import { initialCards, settings } from "./constants.js";
-import FormValidator from "./FormValidator.js";
+} from "../scripts/utils.js";
+import { initialCards, settings } from "../scripts/constants.js";
+import FormValidator from "../scripts/FormValidator.js";
 
+//picture sources
+document.querySelector(".header__logo").src = headerLogo;
+document.querySelector(".profile__pic").src = profilePic;
 // profile icons
 const editIcon = document.querySelector(".profile__edit-icon");
 const addIcon = document.querySelector(".profile__add-icon");
