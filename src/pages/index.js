@@ -1,15 +1,15 @@
 import "./index.css";
 import headerLogo from "../images/header__logo.svg";
 import profilePic from "../images/profile__pic.jpg";
-import Card from "../scripts/Card.js";
+import Card from "../components/Card.js";
 import {
   cardsContainer,
   cardSelector,
   openPopup,
   closePopup,
-} from "../scripts/utils.js";
-import { initialCards, settings } from "../scripts/constants.js";
-import FormValidator from "../scripts/FormValidator.js";
+} from "../components/utils.js";
+import { initialCards, settings } from "../components/constants.js";
+import FormValidator from "../components/FormValidator.js";
 
 //picture sources
 document.querySelector(".header__logo").src = headerLogo;
