@@ -33,13 +33,13 @@ class Card {
     popup.setEventListeners();
     popup.open();
   }
-  createCard(cardData) {
+  createCard() {
     this._cardElement = this._getTemplate();
     const cardImage = this._cardElement.querySelector(".card__img");
     const cardTitle = this._cardElement.querySelector(".card__place");
-    cardImage.alt = cardData.name;
-    cardImage.src = cardData.link;
-    cardTitle.textContent = cardData.name;
+    cardImage.alt = this._text;
+    cardImage.src = this._imageLink;
+    cardTitle.textContent = this._text;
     this._setEventListeners();
     cardImage.addEventListener("mouseup", (evt) => {
       this.handleCardClick(evt);

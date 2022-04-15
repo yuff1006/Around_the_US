@@ -18,8 +18,10 @@ export default class PopupWithForm extends Popup {
     //we need to add the event listener listening for submit button that's specific to forms
 
     const submitButton = this._popup.querySelector(".popup__button");
-    submitButton.addEventListener("mouseup", () => {
-      return this._getInputValues();
+    submitButton.addEventListener("mouseup", (evt) => {
+      const inputValues = this._getInputValues();
+      this._handleFormSubmit(evt, inputValues);
+      this.close();
     });
     super.setEventListeners();
     //remember to put newpopup.setEventListeners() into a variable so it can get the submit results
