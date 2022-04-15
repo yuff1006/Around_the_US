@@ -4,9 +4,11 @@
 
 Around The U.S. is a web app documenting pictures of destinations a user wants to display on their personal page.
 
+![Overview](./src/images/overview.png)
+
 ## Features of the Web App
 
-1. Object Oriented Programming used to organize script files
+1. Object Oriented Programming with loose-coupling relationships between classes to dynamically generate components
 2. Form Validation
 3. Dynamically generate cards of places through the add button
 4. Dynamically delete cards through interactive trash button
@@ -19,7 +21,7 @@ Around The U.S. is a web app documenting pictures of destinations a user wants t
 - JavaScript
 - Object Oriented Programming
 - BEM file structure
-- Modular JS
+- Webpack
 
 ## Design
 
