@@ -1,8 +1,3 @@
-import { openPopup } from "./utils.js";
-// picture popup container, caption, picture and close container
-const popupContainer = document.querySelector("#picture-popup");
-const popupCaption = document.querySelector(".popup__popup-caption");
-const popupPicture = document.querySelector(".popup__picture");
 import PopupWithImage from "./PopupWithImage";
 class Card {
   constructor(cardData, cardSelector) {
@@ -33,7 +28,11 @@ class Card {
     this._cardElement.remove();
     this._cardElement = null;
   }
-
+  handleCardClick(evt) {
+    const popup = new PopupWithImage("#picture-popup", evt.target);
+    popup.setEventListeners();
+    popup.open();
+  }
   createCard(cardData) {
     this._cardElement = this._getTemplate();
     const cardImage = this._cardElement.querySelector(".card__img");
@@ -43,20 +42,10 @@ class Card {
     cardTitle.textContent = cardData.name;
     this._setEventListeners();
     cardImage.addEventListener("mouseup", (evt) => {
-      /////testing//////
-      // const popup = new PopupWithImage("#picture-popup", evt.target);
-      // popup.open();
-      //////////////
-      // this._openPicturePopup(evt);
+      this.handleCardClick(evt);
     });
     return this._cardElement;
   }
-  // _openPicturePopup(evt) {
-  //   popupPicture.alt = evt.target.alt;
-  //   popupPicture.src = evt.target.src;
-  //   popupCaption.textContent = evt.target.alt;
-  //   openPopup(popupContainer);
-  // }
 }
 
 export default Card;
