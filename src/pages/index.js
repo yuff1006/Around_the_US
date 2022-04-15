@@ -6,7 +6,6 @@ import {
   cardsContainer,
   cardSelector,
   openPopup,
-  closePopup,
 } from "../components/utils.js";
 import { initialCards, settings } from "../components/constants.js";
 import FormValidator from "../components/FormValidator.js";
@@ -33,7 +32,12 @@ const profileTitle = document.querySelector(".profile__title");
 // form fields for the author form and the add picture form
 const formFieldAuthor = document.querySelector("#form-field-author");
 const formFieldPicture = document.querySelector("#form-field-picture");
-
+// for testing//
+////////////////
+import Popup from "../components/Popup";
+const newPop = new Popup("#popup");
+newPop.setEventListeners();
+///////////////
 function fillProfileForm() {
   profileFormName.value = profileName.textContent;
   profileFormTitle.value = profileTitle.textContent;
