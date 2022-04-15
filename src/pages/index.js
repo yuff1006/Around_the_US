@@ -34,8 +34,8 @@ const formFieldAuthor = document.querySelector("#form-field-author");
 const formFieldPicture = document.querySelector("#form-field-picture");
 // for testing//
 ////////////////
-import Popup from "../components/Popup";
-const newPop = new Popup("#popup");
+import PopupWithImage from "../components/PopupWithImage";
+const newPop = new PopupWithImage("#picture-popup");
 newPop.setEventListeners();
 ///////////////
 function fillProfileForm() {

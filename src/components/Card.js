@@ -3,7 +3,7 @@ import { openPopup } from "./utils.js";
 const popupContainer = document.querySelector("#picture-popup");
 const popupCaption = document.querySelector(".popup__popup-caption");
 const popupPicture = document.querySelector(".popup__picture");
-
+import PopupWithImage from "./PopupWithImage";
 class Card {
   constructor(cardData, cardSelector) {
     this._imageLink = cardData.link;
@@ -43,16 +43,20 @@ class Card {
     cardTitle.textContent = cardData.name;
     this._setEventListeners();
     cardImage.addEventListener("mouseup", (evt) => {
-      this._openPicturePopup(evt);
+      /////testing//////
+      // const popup = new PopupWithImage("#picture-popup", evt.target);
+      // popup.open();
+      //////////////
+      // this._openPicturePopup(evt);
     });
     return this._cardElement;
   }
-  _openPicturePopup(evt) {
-    popupPicture.alt = evt.target.alt;
-    popupPicture.src = evt.target.src;
-    popupCaption.textContent = evt.target.alt;
-    openPopup(popupContainer);
-  }
+  // _openPicturePopup(evt) {
+  //   popupPicture.alt = evt.target.alt;
+  //   popupPicture.src = evt.target.src;
+  //   popupCaption.textContent = evt.target.alt;
+  //   openPopup(popupContainer);
+  // }
 }
 
 export default Card;
