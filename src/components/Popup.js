@@ -23,7 +23,9 @@ export default class Popup {
     });
     // 3) mouseup on the overlay
     this._popup.addEventListener("mouseup", (evt) => {
-      this.close(evt.target);
+      if (evt.target === this._popup) {
+        this.close();
+      }
     });
     // addEventListener for 1) method
     document.addEventListener("keyup", (evt) => {

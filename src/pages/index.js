@@ -34,8 +34,8 @@ const formFieldAuthor = document.querySelector("#form-field-author");
 const formFieldPicture = document.querySelector("#form-field-picture");
 // for testing//
 ////////////////
-import PopupWithImage from "../components/PopupWithImage";
-const newPop = new PopupWithImage("#picture-popup");
+import PopupWithForm from "../components/PopupWithForm";
+const newPop = new PopupWithForm("#popup", "haha");
 newPop.setEventListeners();
 ///////////////
 function fillProfileForm() {
@@ -64,15 +64,15 @@ function handleProfileFormSubmit(evt) {
   closePopup(editProfileForm);
 }
 
-function handlePictureFormSubmit(evt) {
-  evt.preventDefault();
-  const cardData = {
-    name: pictureFormPlace.value,
-    link: pictureFormURL.value,
-  };
-  renderCard(cardData, cardSelector);
-  closePopup(addPictureForm);
-}
+// function handlePictureFormSubmit(evt) {
+//   evt.preventDefault();
+//   const cardData = {
+//     name: pictureFormPlace.value,
+//     link: pictureFormURL.value,
+//   };
+//   renderCard(cardData, cardSelector);
+//   closePopup(addPictureForm);
+// }
 // when new card is created, render another card
 function renderCard(cardData, cardSelector) {
   const renderedCard = new Card(cardData, cardSelector).createCard(cardData);
@@ -83,7 +83,7 @@ function renderCard(cardData, cardSelector) {
 addIcon.addEventListener("mouseup", handleOpenAddPictureForm);
 editIcon.addEventListener("mouseup", handleOpenProfileForm);
 formFieldAuthor.addEventListener("submit", handleProfileFormSubmit);
-formFieldPicture.addEventListener("submit", handlePictureFormSubmit);
+// formFieldPicture.addEventListener("submit", handlePictureFormSubmit);
 //generate all six cards and append them to the card container
 
 initialCards.forEach((cardData) => {
