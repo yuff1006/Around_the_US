@@ -20,7 +20,8 @@ export default class PopupWithForm extends Popup {
     const submitButton = this._popup.querySelector(".popup__button");
     submitButton.addEventListener("mouseup", (evt) => {
       const inputValues = this._getInputValues();
-      this._handleFormSubmit(evt, inputValues);
+
+      this._handleFormSubmit(inputValues);
       this.close();
     });
     super.setEventListeners();
