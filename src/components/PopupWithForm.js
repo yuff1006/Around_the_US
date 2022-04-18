@@ -7,6 +7,7 @@ export default class PopupWithForm extends Popup {
   }
   _getInputValues() {
     const inputList = [...this._popup.querySelectorAll(".popup__info")];
+    console.log(inputList);
     const inputContent = [];
     inputList.forEach((inputEl) => {
       inputContent.push(inputEl.value);
@@ -19,7 +20,6 @@ export default class PopupWithForm extends Popup {
     const submitButton = this._popup.querySelector(".popup__button");
     submitButton.addEventListener("mouseup", () => {
       const inputValues = this._getInputValues();
-
       this._handleFormSubmit(inputValues);
       this.close();
     });

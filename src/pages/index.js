@@ -35,19 +35,6 @@ const pictureFormURL = document.querySelector("#popup-url");
 const formFieldAuthor = document.querySelector("#form-field-author");
 const formFieldPicture = document.querySelector("#form-field-picture");
 
-/////////////////////////////////
-/////////////////////////////////
-/////////////////////////////////
-//functions to handle author and add picture form results
-// function handleProfileFormSubmit(evt, inputValues) {
-//   evt.preventDefault();
-//   profileName.textContent = inputValues[0];
-//   profileTitle.textContent = inputValues[1];
-// }
-
-/////////////////////////////////
-/////////////////////////////////
-/////////////////////////////////
 function handlePictureFormSubmit(inputValues) {
   const card = new Card(
     { link: inputValues[1], name: inputValues[0] },
@@ -60,27 +47,28 @@ const placePopup = new PopupWithForm(".popup_picture", (evt, inputValues) => {
   handlePictureFormSubmit(evt, inputValues);
 });
 placePopup.setEventListeners();
-/////////////////////////////////
-/////////////////////////////////
-/////////////////////////////////
+
 function fillProfileForm() {
-  profileFormName.value = profileName.textContent;
-  profileFormTitle.value = profileTitle.textContent;
+  const result = newUserInfo.getUserInfo();
+  document.querySelector("#popup-name").value = result.userName;
+  document.querySelector("#popup-title").value = result.userJob;
 }
+// user info at first
+const newUserInfo = new UserInfo([
+  profileName.textContent,
+  profileTitle.textContent,
+]);
 
 const profilePopup = new PopupWithForm("#popup", (inputValues) => {
-  // handleFormSubmit function:
-  const newUserInfo = new UserInfo(inputValues);
-  console.log(newUserInfo.getUserInfo());
-  newUserInfo.setUserInfo();
-  // handleProfileFormSubmit(evt, inputValues);
+  newUserInfo.setUserInfo(inputValues);
 });
+profilePopup.setEventListeners();
+
 function handleOpenProfileForm() {
   formFieldAuthor.reset();
   fillProfileForm();
   addProfileFormValidated.resetValidation();
   profilePopup.open();
-  profilePopup.setEventListeners();
 }
 
 // validators
@@ -95,17 +83,8 @@ function handleOpenAddPictureForm() {
   openPopup(addPictureForm);
 }
 
-// when new card is created, render another card
-// function renderCard(cardData, cardSelector) {
-//   const renderedCard = new Card(cardData, cardSelector).createCard(cardData);
-//   cardsContainer.prepend(renderedCard);
-// }
-
-//buttons for author, add picture, submit buttons for both and popup trigger's event listeners
 addIcon.addEventListener("mouseup", handleOpenAddPictureForm);
 editIcon.addEventListener("mouseup", handleOpenProfileForm);
-// formFieldAuthor.addEventListener("submit", handleProfileFormSubmit);
-// formFieldPicture.addEventListener("submit", handlePictureFormSubmit);
 
 const cards = new Section(
   {
