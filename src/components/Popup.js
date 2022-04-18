@@ -1,12 +1,16 @@
 export default class Popup {
   constructor(popupSelector) {
     this._popup = document.querySelector(popupSelector);
+    this._handleEscClose = this._handleEscClose.bind(this);
   }
   open() {
+    // addEventListener for 1) method
+    document.addEventListener("keyup", this._handleEscClose);
     this._popup.classList.add("popup_open");
   }
   close() {
     this._popup.classList.remove("popup_open");
+    document.removeEventListener("keyup", this._handleEscClose);
   }
   // Three ways to close the popup:
   // 1) hit ESC key
@@ -26,10 +30,6 @@ export default class Popup {
       if (evt.target === this._popup) {
         this.close();
       }
-    });
-    // addEventListener for 1) method
-    document.addEventListener("keyup", (evt) => {
-      this._handleEscClose(evt);
     });
   }
 }

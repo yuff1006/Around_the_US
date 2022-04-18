@@ -6,7 +6,6 @@ export default class PopupWithForm extends Popup {
     this._handleFormSubmit = handleFormSubmit;
   }
   _getInputValues() {
-    //we still need to verify user input before doing this
     const inputList = [...this._popup.querySelectorAll(".popup__info")];
     const inputContent = [];
     inputList.forEach((inputEl) => {
@@ -18,7 +17,7 @@ export default class PopupWithForm extends Popup {
     //we need to add the event listener listening for submit button that's specific to forms
 
     const submitButton = this._popup.querySelector(".popup__button");
-    submitButton.addEventListener("mouseup", (evt) => {
+    submitButton.addEventListener("mouseup", () => {
       const inputValues = this._getInputValues();
 
       this._handleFormSubmit(inputValues);

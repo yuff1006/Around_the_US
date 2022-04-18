@@ -48,8 +48,7 @@ const formFieldPicture = document.querySelector("#form-field-picture");
 /////////////////////////////////
 /////////////////////////////////
 /////////////////////////////////
-function handlePictureFormSubmit(evt, inputValues) {
-  evt.preventDefault();
+function handlePictureFormSubmit(inputValues) {
   const card = new Card(
     { link: inputValues[1], name: inputValues[0] },
     cardSelector
@@ -65,32 +64,31 @@ placePopup.setEventListeners();
 /////////////////////////////////
 /////////////////////////////////
 function fillProfileForm() {
-  console.log("filled" + profileName.textContent + profileTitle.textContent);
   profileFormName.value = profileName.textContent;
   profileFormTitle.value = profileTitle.textContent;
 }
 
+const profilePopup = new PopupWithForm("#popup", (inputValues) => {
+  // handleFormSubmit function:
+  const newUserInfo = new UserInfo(inputValues);
+  console.log(newUserInfo.getUserInfo());
+  newUserInfo.setUserInfo();
+  // handleProfileFormSubmit(evt, inputValues);
+});
 function handleOpenProfileForm() {
-  const addProfileFormValidated = new FormValidator(settings, editProfileForm);
-  addProfileFormValidated.enableValidator();
-  // create a new popup with form
-  const profilePopup = new PopupWithForm("#popup", (inputValues) => {
-    // handleFormSubmit function:
-    const newUserInfo = new UserInfo(inputValues);
-    console.log(newUserInfo.getUserInfo());
-    newUserInfo.setUserInfo();
-    // handleProfileFormSubmit(evt, inputValues);
-    addProfileFormValidated.resetValidation();
-  });
-  //need to populate the form with existing user info data
+  formFieldAuthor.reset();
   fillProfileForm();
-
+  addProfileFormValidated.resetValidation();
   profilePopup.open();
   profilePopup.setEventListeners();
-  // fillProfileForm();
 }
+
+// validators
+const addProfileFormValidated = new FormValidator(settings, editProfileForm);
+addProfileFormValidated.enableValidator();
 const addPictureFormValidated = new FormValidator(settings, addPictureForm);
 addPictureFormValidated.enableValidator();
+
 function handleOpenAddPictureForm() {
   formFieldPicture.reset();
   addPictureFormValidated.resetValidation();
