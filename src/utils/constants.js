@@ -34,3 +34,5 @@ export const settings = {
   // error message class
   errorClass: "popup__error_visible",
 };
+export const cardsContainer = ".cards__container";
+export const cardSelector = "#card";

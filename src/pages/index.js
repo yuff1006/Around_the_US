@@ -1,21 +1,16 @@
 import "./index.css";
-import headerLogo from "../images/header__logo.svg";
-import profilePic from "../images/profile__pic.jpg";
 import Card from "../components/Card";
 import {
   cardsContainer,
   cardSelector,
-  openPopup,
-} from "../components/utils.js";
-import { initialCards, settings } from "../components/constants";
-import FormValidator from "../components/FormValidator.js";
+  initialCards,
+  settings,
+} from "../utils/constants";
+import FormValidator from "../components/FormValidator";
 import Section from "../components/Section";
 import UserInfo from "../components/UserInfo";
 import PopupWithForm from "../components/PopupWithForm";
-import PopupWithImage from "../components/PopupWithImage";
-//picture sources
-document.querySelector(".header__logo").src = headerLogo;
-document.querySelector(".profile__pic").src = profilePic;
+
 // profile icons
 const editIcon = document.querySelector(".profile__edit-icon");
 const addIcon = document.querySelector(".profile__add-icon");
@@ -30,10 +25,7 @@ const formFieldAuthor = document.querySelector("#form-field-author");
 const formFieldPicture = document.querySelector("#form-field-picture");
 
 function handlePictureFormSubmit(inputValues) {
-  const card = new Card(
-    { link: inputValues[1], name: inputValues[0] },
-    cardSelector
-  );
+  const card = new Card(inputValues, cardSelector);
   const addedCard = card.createCard();
   cards.addItem(addedCard);
 }
@@ -74,7 +66,7 @@ addPictureFormValidated.enableValidator();
 function handleOpenAddPictureForm() {
   formFieldPicture.reset();
   addPictureFormValidated.resetValidation();
-  openPopup(addPictureForm);
+  placePopup.open();
 }
 
 addIcon.addEventListener("mouseup", handleOpenAddPictureForm);

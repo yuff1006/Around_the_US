@@ -8,11 +8,19 @@
   </head>
   <body class="page">
     <header class="header">
-      <img alt="around the US page logo" class="header__logo" src="" />
+      <img
+        alt="around the US page logo"
+        class="header__logo"
+        src="<%= require('./images/header__logo.svg')%>"
+      />
     </header>
     <main class="content">
       <section class="profile">
-        <img alt="Jacques Cousteau's headshot" class="profile__pic" src="" />
+        <img
+          alt="Jacques Cousteau's headshot"
+          class="profile__pic"
+          src="<%= require('./images/profile__pic.jpg')%>"
+        />
         <div class="profile__name-and-icon">
           <h1 class="profile__name">Jacques Cousteau</h1>
           <button
@@ -62,6 +70,7 @@
             required
             minlength="2"
             maxlength="40"
+            name="userName"
           />
           <span class="popup__error" id="popup-name-error"></span>
           <input
@@ -71,6 +80,7 @@
             required
             minlength="2"
             maxlength="200"
+            name="userJob"
           />
           <span class="popup__error" id="popup-title-error"></span>
           <button type="submit" class="popup__button">Save</button>
@@ -96,6 +106,7 @@
             required
             minlength="1"
             maxlength="30"
+            name="name"
           />
           <span class="popup__error" id="popup-place-error"></span>
           <input
@@ -104,6 +115,7 @@
             placeholder="Image Link"
             required
             type="url"
+            name="link"
           />
           <span class="popup__error" id="popup-url-error"></span>
           <button type="submit" class="popup__button">Create</button>

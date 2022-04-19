@@ -1,5 +1,5 @@
 export default class UserInfo {
-  constructor([userName, userJob]) {
+  constructor({ userName, userJob }) {
     this._name = userName;
     this._job = userJob;
     this._nameSlot = document.querySelector(".profile__name");
@@ -13,7 +13,7 @@ export default class UserInfo {
   }
   // upon form submission
   setUserInfo(data) {
-    this._nameSlot.textContent = data[0];
-    this._jobSlot.textContent = data[1];
+    this._nameSlot.textContent = data.userName;
+    this._jobSlot.textContent = data.userJob;
   }
 }

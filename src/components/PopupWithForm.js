@@ -7,14 +7,13 @@ export default class PopupWithForm extends Popup {
   }
   _getInputValues() {
     const inputList = [...this._popup.querySelectorAll(".popup__info")];
-    const inputContent = [];
+    const inputContent = {};
     inputList.forEach((inputEl) => {
-      inputContent.push(inputEl.value);
+      inputContent[inputEl.name] = inputEl.value;
     });
     return inputContent;
   }
   setEventListeners() {
-    //we need to add the event listener listening for submit button that's specific to forms
     const formList = [...this._popup.querySelectorAll(".popup__form")];
     formList.forEach((formEl) => {
       formEl.addEventListener("submit", () => {
@@ -23,10 +22,7 @@ export default class PopupWithForm extends Popup {
         this.close();
       });
     });
-
     super.setEventListeners();
-    //remember to put newpopup.setEventListeners() into a variable so it can get the submit results
-    //we need to reset the form input contents once the modal is closed
   }
   close() {
     super.close();
