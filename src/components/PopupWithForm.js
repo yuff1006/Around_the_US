@@ -7,7 +7,6 @@ export default class PopupWithForm extends Popup {
   }
   _getInputValues() {
     const inputList = [...this._popup.querySelectorAll(".popup__info")];
-    console.log(inputList);
     const inputContent = [];
     inputList.forEach((inputEl) => {
       inputContent.push(inputEl.value);
@@ -16,13 +15,15 @@ export default class PopupWithForm extends Popup {
   }
   setEventListeners() {
     //we need to add the event listener listening for submit button that's specific to forms
-
-    const submitButton = this._popup.querySelector(".popup__button");
-    submitButton.addEventListener("mouseup", () => {
-      const inputValues = this._getInputValues();
-      this._handleFormSubmit(inputValues);
-      this.close();
+    const formList = [...this._popup.querySelectorAll(".popup__form")];
+    formList.forEach((formEl) => {
+      formEl.addEventListener("submit", () => {
+        const inputValues = this._getInputValues();
+        this._handleFormSubmit(inputValues);
+        this.close();
+      });
     });
+
     super.setEventListeners();
     //remember to put newpopup.setEventListeners() into a variable so it can get the submit results
     //we need to reset the form input contents once the modal is closed

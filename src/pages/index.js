@@ -25,12 +25,6 @@ const addPictureForm = document.querySelector(".popup_picture");
 // profile display
 const profileName = document.querySelector(".profile__name");
 const profileTitle = document.querySelector(".profile__title");
-// profile form two fields
-const profileFormName = document.querySelector("#popup-name");
-const profileFormTitle = document.querySelector("#popup-title");
-// add picture form two fields
-const pictureFormPlace = document.querySelector("#popup-place");
-const pictureFormURL = document.querySelector("#popup-url");
 // form fields for the author form and the add picture form
 const formFieldAuthor = document.querySelector("#form-field-author");
 const formFieldPicture = document.querySelector("#form-field-picture");
