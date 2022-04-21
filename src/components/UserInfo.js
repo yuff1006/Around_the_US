@@ -1,15 +1,14 @@
 export default class UserInfo {
-  constructor({ userName, userJob }) {
-    this._name = userName;
-    this._job = userJob;
-    this._nameSlot = document.querySelector(".profile__name");
-    this._jobSlot = document.querySelector(".profile__title");
+  constructor({ nameSelector, jobSelector }) {
+    this._nameSlot = document.querySelector(nameSelector);
+    this._jobSlot = document.querySelector(jobSelector);
   }
   // to populate form fields after popup open
   getUserInfo() {
-    this._name = this._nameSlot.textContent;
-    this._job = this._jobSlot.textContent;
-    return { userName: this._name, userJob: this._job };
+    return {
+      userName: this._nameSlot.textContent,
+      userJob: this._jobSlot.textContent,
+    };
   }
   // upon form submission
   setUserInfo(data) {

@@ -17,9 +17,6 @@ const addIcon = document.querySelector(".profile__add-icon");
 // author, add picture forms
 const editProfileForm = document.querySelector("#popup");
 const addPictureForm = document.querySelector(".popup_picture");
-// profile display
-const profileName = document.querySelector(".profile__name");
-const profileTitle = document.querySelector(".profile__title");
 // form fields for the author form and the add picture form
 const formFieldAuthor = document.querySelector("#form-field-author");
 const formFieldPicture = document.querySelector("#form-field-picture");
@@ -32,23 +29,22 @@ function handlePictureFormSubmit(inputValues) {
 const placePopup = new PopupWithForm(".popup_picture", (evt, inputValues) => {
   handlePictureFormSubmit(evt, inputValues);
 });
-// placePopup.setEventListeners();
 
 function fillProfileForm() {
-  const result = newUserInfo.getUserInfo();
+  const result = userInfo.getUserInfo();
   document.querySelector("#popup-name").value = result.userName;
   document.querySelector("#popup-title").value = result.userJob;
 }
 // user info at first
-const newUserInfo = new UserInfo([
-  profileName.textContent,
-  profileTitle.textContent,
-]);
+const userInfo = new UserInfo({
+  nameSelector: ".profile__name",
+  jobSelector: ".profile__title",
+});
 
 const profilePopup = new PopupWithForm("#popup", (inputValues) => {
-  newUserInfo.setUserInfo(inputValues);
+  userInfo.setUserInfo(inputValues);
+  console.log(userInfo.getUserInfo());
 });
-// profilePopup.setEventListeners();
 
 function handleOpenProfileForm() {
   formFieldAuthor.reset();
