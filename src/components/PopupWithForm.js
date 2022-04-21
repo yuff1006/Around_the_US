@@ -13,7 +13,7 @@ export default class PopupWithForm extends Popup {
     });
     return inputContent;
   }
-  setEventListeners() {
+  _setEventListeners() {
     const formList = [...this._popup.querySelectorAll(".popup__form")];
     formList.forEach((formEl) => {
       formEl.addEventListener("submit", () => {
@@ -22,7 +22,7 @@ export default class PopupWithForm extends Popup {
         this.close();
       });
     });
-    super.setEventListeners();
+    super._setEventListeners();
   }
   close() {
     super.close();

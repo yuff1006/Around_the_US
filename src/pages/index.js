@@ -32,7 +32,7 @@ function handlePictureFormSubmit(inputValues) {
 const placePopup = new PopupWithForm(".popup_picture", (evt, inputValues) => {
   handlePictureFormSubmit(evt, inputValues);
 });
-placePopup.setEventListeners();
+// placePopup.setEventListeners();
 
 function fillProfileForm() {
   const result = newUserInfo.getUserInfo();
@@ -48,7 +48,7 @@ const newUserInfo = new UserInfo([
 const profilePopup = new PopupWithForm("#popup", (inputValues) => {
   newUserInfo.setUserInfo(inputValues);
 });
-profilePopup.setEventListeners();
+// profilePopup.setEventListeners();
 
 function handleOpenProfileForm() {
   formFieldAuthor.reset();

@@ -28,11 +28,11 @@ class Card {
     this._cardElement.remove();
     this._cardElement = null;
   }
-  handleCardClick(evt) {
-    const popup = new PopupWithImage("#picture-popup", evt.target);
-    popup.setEventListeners();
-    popup.open();
-  }
+  // handleCardClick(evt) {
+  //   const popup = new PopupWithImage("#picture-popup", evt.target);
+  //   popup.setEventListeners();
+  //   popup.open();
+  // }
   createCard() {
     this._cardElement = this._getTemplate();
     const cardImage = this._cardElement.querySelector(".card__img");
