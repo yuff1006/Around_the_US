@@ -43,7 +43,6 @@ const userInfo = new UserInfo({
 
 const profilePopup = new PopupWithForm("#popup", (inputValues) => {
   userInfo.setUserInfo(inputValues);
-  console.log(userInfo.getUserInfo());
 });
 
 function handleOpenProfileForm() {
