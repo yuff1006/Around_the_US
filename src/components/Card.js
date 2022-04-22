@@ -1,9 +1,10 @@
 import PopupWithImage from "./PopupWithImage";
 class Card {
-  constructor(cardData, cardSelector) {
+  constructor(cardData, cardSelector, handleCardClick) {
     this._imageLink = cardData.link;
     this._text = cardData.name;
     this._cardSelector = cardSelector;
+    this._handleCardClick = handleCardClick;
   }
   _getTemplate() {
     return document
@@ -20,6 +21,10 @@ class Card {
     trashButton.addEventListener("mouseup", () => {
       this._deleteCard();
     });
+    const cardImage = this._cardElement.querySelector(".card__img");
+    cardImage.addEventListener("mouseup", (evt) => {
+      this._handleCardClick(evt.target);
+    });
   }
   _handleLike(evt) {
     evt.target.classList.toggle("card__heart_active");
@@ -28,11 +33,6 @@ class Card {
     this._cardElement.remove();
     this._cardElement = null;
   }
-  // handleCardClick(evt) {
-  //   const popup = new PopupWithImage("#picture-popup", evt.target);
-  //   popup.setEventListeners();
-  //   popup.open();
-  // }
   createCard() {
     this._cardElement = this._getTemplate();
     const cardImage = this._cardElement.querySelector(".card__img");
@@ -41,9 +41,7 @@ class Card {
     cardImage.src = this._imageLink;
     cardTitle.textContent = this._text;
     this._setEventListeners();
-    cardImage.addEventListener("mouseup", (evt) => {
-      this.handleCardClick(evt);
-    });
+
     return this._cardElement;
   }
 }
