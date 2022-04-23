@@ -80,9 +80,7 @@ editIcon.addEventListener("mouseup", handleOpenProfileForm);
 const cardSection = new Section(
   {
     items: initialCards,
-    renderer: (cardEl) => {
-      renderCard(cardEl);
-    },
+    renderer: renderCard,
   },
   cardsContainer
 );

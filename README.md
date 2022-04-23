@@ -1,8 +1,6 @@
 # Project 4: Around The U.S.
 
-## About the Project
-
-Around The U.S. is a web app documenting pictures of destinations a user wants to display on their personal page.
+An Instagram-like app that displays user's pictures and places, with functionality to like, delete, and custimize.
 
 ![Overview](./src/images/overview.png)
 
@@ -22,6 +20,20 @@ Around The U.S. is a web app documenting pictures of destinations a user wants t
 - Object Oriented Programming
 - BEM file structure
 - Webpack
+
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+
+- JavaScript: frontend interactivity and functionality
+
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+
+- Node.js is an open-source, cross-platform runtime environment that allows developers to create all kinds of server-side tools and applications in JavaScript.
+- Node. js is primarily used for non-blocking, event-driven servers, due to its single-threaded nature.
+- It's used for traditional web sites and back-end API services.
+
+![Webpack](https://img.shields.io/badge/webpack-%238DD6F9.svg?style=for-the-badge&logo=webpack&logoColor=black)
+
+- Webpack is a module bundler. Its main purpose is to bundle JavaScript files for usage in a browser, yet it is also capable of transforming, bundling, or packaging just about any resource or asset.
 
 ## Design
 
