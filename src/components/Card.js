@@ -1,4 +1,3 @@
-import PopupWithImage from "./PopupWithImage";
 class Card {
   constructor(cardData, cardSelector, handleCardClick) {
     this._imageLink = cardData.link;
@@ -21,8 +20,8 @@ class Card {
     trashButton.addEventListener("mouseup", () => {
       this._deleteCard();
     });
-    const cardImage = this._cardElement.querySelector(".card__img");
-    cardImage.addEventListener("mouseup", (evt) => {
+
+    this._cardImage.addEventListener("mouseup", (evt) => {
       this._handleCardClick(evt.target);
     });
   }
@@ -35,10 +34,10 @@ class Card {
   }
   createCard() {
     this._cardElement = this._getTemplate();
-    const cardImage = this._cardElement.querySelector(".card__img");
+    this._cardImage = this._cardElement.querySelector(".card__img");
     const cardTitle = this._cardElement.querySelector(".card__place");
-    cardImage.alt = this._text;
-    cardImage.src = this._imageLink;
+    this._cardImage.alt = this._text;
+    this._cardImage.src = this._imageLink;
     cardTitle.textContent = this._text;
     this._setEventListeners();
 

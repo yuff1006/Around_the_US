@@ -38,7 +38,6 @@ export default class Popup {
     // Three ways to close the popup:
     // 1) hit ESC key
     document.addEventListener("keyup", this._handleEscClose);
-
     // 2) mouseup on the close button
     this._closeButton.addEventListener("mouseup", this._handleButtonClose);
     // 3) mouseup on the overlay
