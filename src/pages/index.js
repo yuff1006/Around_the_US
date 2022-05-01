@@ -85,3 +85,13 @@ const cardSection = new Section(
   cardsContainer
 );
 cardSection.renderItems();
+
+fetch("https://around.nomoreparties.co/v1/group-12/cards", {
+  headers: {
+    authorization: "1384428a-b01c-46ae-afda-f222b9d7dc7d",
+  },
+})
+  .then((res) => res.json())
+  .then((result) => {
+    console.log(result);
+  });
