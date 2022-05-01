@@ -1,11 +1,6 @@
 import "./index.css";
 import Card from "../components/Card";
-import {
-  cardsContainer,
-  cardSelector,
-  initialCards,
-  settings,
-} from "../utils/constants";
+import { cardsContainer, cardSelector, settings } from "../utils/constants";
 import FormValidator from "../components/FormValidator";
 import Section from "../components/Section";
 import UserInfo from "../components/UserInfo";
@@ -41,7 +36,7 @@ const imagePopup = new PopupWithImage("#picture-popup");
 function handleCardClick(image) {
   imagePopup.open(image);
 }
-
+let cardSection;
 // profile form functions
 function fillProfileForm() {
   const result = userInfo.getUserInfo();
@@ -77,21 +72,35 @@ function handleOpenAddPictureForm() {
 addIcon.addEventListener("mouseup", handleOpenAddPictureForm);
 editIcon.addEventListener("mouseup", handleOpenProfileForm);
 
-const cardSection = new Section(
-  {
-    items: initialCards,
-    renderer: renderCard,
-  },
-  cardsContainer
-);
-cardSection.renderItems();
-
 fetch("https://around.nomoreparties.co/v1/group-12/cards", {
   headers: {
     authorization: "1384428a-b01c-46ae-afda-f222b9d7dc7d",
   },
 })
   .then((res) => res.json())
-  .then((result) => {
-    console.log(result);
+  .then((initialCards) => {
+    cardSection = new Section(
+      {
+        items: initialCards,
+        renderer: renderCard,
+      },
+      cardsContainer
+    );
+    cardSection.renderItems();
+  });
+
+const profileName = document.querySelector(".profile__name");
+const profileTitle = document.querySelector(".profile__title");
+const profilePic = document.querySelector(".profile__pic");
+fetch("https://around.nomoreparties.co/v1/group-12/users/me", {
+  headers: {
+    authorization: "1384428a-b01c-46ae-afda-f222b9d7dc7d",
+  },
+})
+  .then((res) => res.json())
+  .then(({ name, about, avatar }) => {
+    profileName.textContent = name;
+    profileTitle.textContent = about;
+    profilePic.src = avatar;
+    profilePic.alt = `${name}'s headshot`;
   });
