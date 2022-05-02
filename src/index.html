@@ -81,12 +81,7 @@
           <span class="popup__error" id="popup-title-error"></span>
           <button type="submit" class="popup__button">Save</button>
         </form>
-        <button
-          aria-label="Close"
-          type="button"
-          class="popup__close"
-          id="popup-close-author"
-        ></button>
+        <button aria-label="Close" type="button" class="popup__close"></button>
       </div>
     </div>
 
@@ -116,15 +111,22 @@
           <span class="popup__error" id="popup-url-error"></span>
           <button type="submit" class="popup__button">Create</button>
         </form>
+        <button aria-label="Close" type="button" class="popup__close"></button>
+      </div>
+    </div>
+
+    <div class="popup popup_delete">
+      <div class="popup__container">
+        <h2 class="popup__title popup__title_no-input">Are you sure?</h2>
+        <button type="submit" class="popup__button">Yes</button>
         <button
           aria-label="Close"
           type="button"
           class="popup__close"
-          id="popup-close-picture"
+          id="delete-confirmation"
         ></button>
       </div>
     </div>
-
     <template id="card">
       <li class="card">
         <button type="button" class="card__trash" aria-label="Delete"></button>

@@ -1,10 +1,11 @@
 class Card {
-  constructor(cardData, cardSelector, handleCardClick) {
+  constructor(cardData, cardSelector, handleCardClick, handleTrashButton) {
     this._imageLink = cardData.link;
     this._text = cardData.name;
     this._likes = cardData.likes.length;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
+    this._handleTrashButton = handleTrashButton;
   }
   _getTemplate() {
     return document
@@ -19,7 +20,10 @@ class Card {
     });
     const trashButton = this._cardElement.querySelector(".card__trash");
     trashButton.addEventListener("mouseup", () => {
-      this._deleteCard();
+      console.log(this._handleTrashButton());
+      if (this._handleTrashButton()) {
+        this._deleteCard();
+      }
     });
 
     this._cardImage.addEventListener("mouseup", (evt) => {

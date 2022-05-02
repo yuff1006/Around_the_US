@@ -7,6 +7,7 @@ import UserInfo from "../components/UserInfo";
 import PopupWithForm from "../components/PopupWithForm";
 import PopupWithImage from "../components/PopupWithImage";
 import Api from "../components/Api";
+import PopupWithConfirmation from "../components/PopupWithConfirmation";
 
 // profile icons
 const editIcon = document.querySelector(".profile__edit-icon");
@@ -14,6 +15,7 @@ const addIcon = document.querySelector(".profile__add-icon");
 // author, add picture forms
 const editProfileForm = document.querySelector("#popup");
 const addPictureForm = document.querySelector(".popup_picture");
+// const deletePictureConfirmation = document.querySelector(".popup_delete");
 // form fields for the author form and the add picture form
 const formFieldAuthor = document.querySelector("#form-field-author");
 const formFieldPicture = document.querySelector("#form-field-picture");
@@ -24,7 +26,7 @@ const inputProfileTitle = document.querySelector("#popup-title");
 const profileName = document.querySelector(".profile__name");
 const profileTitle = document.querySelector(".profile__title");
 const profilePic = document.querySelector(".profile__pic");
-
+const deleteConfirmationButton = document.querySelector("#delete-confirmation");
 // instantiate API class
 const api = new Api({
   baseUrl: "https://around.nomoreparties.co/v1/group-12",
@@ -36,7 +38,12 @@ const api = new Api({
 
 // add picture form functions
 function renderCard(inputValues) {
-  const card = new Card(inputValues, cardSelector, handleCardClick);
+  const card = new Card(
+    inputValues,
+    cardSelector,
+    handleCardClick,
+    handleTrashButton
+  );
   const cardEl = card.createCard();
   cardSection.addItem(cardEl);
 }
@@ -64,6 +71,17 @@ function handleCardClick(image) {
   imagePopup.open(image);
 }
 
+const deleteCardConfirmation = new PopupWithConfirmation(
+  ".popup_delete",
+  handleDeleteConfirmation
+);
+function handleTrashButton() {
+  deleteCardConfirmation.open();
+  deleteConfirmationButton.addEventListener("mouseup", () => {
+    return true;
+  });
+}
+function handleDeleteConfirmation() {}
 // initialize card Section class variable to take api call result and interact with Section.js
 let cardSection;
 
