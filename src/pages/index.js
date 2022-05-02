@@ -24,6 +24,7 @@ const inputProfileTitle = document.querySelector("#popup-title");
 const profileName = document.querySelector(".profile__name");
 const profileTitle = document.querySelector(".profile__title");
 const profilePic = document.querySelector(".profile__pic");
+const likeCount = document.querySelector(".card__like-count");
 
 // instantiate API class
 const api = new Api({
@@ -34,6 +35,15 @@ const api = new Api({
   },
 });
 
+// render like count
+api.initialize().then(() => {
+  api.getCardLikeInfo().then((cards) => {
+    cards.forEach((card) => {
+      // need to figure out how this interacts with the card class!!!!!!!
+      // !!!!!!
+    });
+  });
+});
 // add picture form functions
 function renderCard(inputValues) {
   const card = new Card(inputValues, cardSelector, handleCardClick);
@@ -43,11 +53,14 @@ function renderCard(inputValues) {
 function handlePictureFormSubmit(inputValues) {
   renderCard(inputValues);
 }
+// add picture form submit
 const placePopup = new PopupWithForm(".popup_picture", (inputValues) => {
   api
-    .addNewCard(inputValues)
-    .then((inputValues) => {
-      handlePictureFormSubmit(inputValues);
+    .initialize()
+    .then(() => {
+      api.addNewCard(inputValues).then((inputValues) => {
+        handlePictureFormSubmit(inputValues);
+      });
     })
     .catch(() => {
       console.log("oops");
@@ -79,16 +92,16 @@ const userInfo = new UserInfo({
   jobSelector: ".profile__title",
 });
 const profilePopup = new PopupWithForm("#popup", (inputValues) => {
-  api.initialize().then(() => {
-    api
-      .editUserProfile(inputValues)
-      .then((inputValues) => {
+  api
+    .initialize()
+    .then(() => {
+      api.editUserProfile(inputValues).then((inputValues) => {
         userInfo.setUserInfo(inputValues);
-      })
-      .catch(() => {
-        console.log("oops");
       });
-  });
+    })
+    .catch(() => {
+      console.log("oops");
+    });
 });
 
 // validators

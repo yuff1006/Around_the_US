@@ -50,7 +50,9 @@ export default class Api {
       }),
     }).then((res) => res.json());
   }
-  getCardLikeInfo() {}
+  getCardLikeInfo() {
+    return this._handleFetchResponse("/cards");
+  }
   deleteCard() {}
   addLike() {}
   removeLike() {}
