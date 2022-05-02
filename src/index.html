@@ -18,7 +18,7 @@
       <section class="profile">
         <img alt="" class="profile__pic" src="" />
         <div class="profile__name-and-icon">
-          <h1 class="profile__name">Jacques Cousteau</h1>
+          <h1 class="profile__name"></h1>
           <button
             aria-label="Edit"
             type="button"
@@ -26,7 +26,7 @@
             id="edit-icon"
           ></button>
         </div>
-        <p class="profile__title">Explorer</p>
+        <p class="profile__title"></p>
         <button
           aria-label="Add"
           type="button"
@@ -66,7 +66,7 @@
             required
             minlength="2"
             maxlength="40"
-            name="userName"
+            name="name"
           />
           <span class="popup__error" id="popup-name-error"></span>
           <input
@@ -76,7 +76,7 @@
             required
             minlength="2"
             maxlength="200"
-            name="userJob"
+            name="about"
           />
           <span class="popup__error" id="popup-title-error"></span>
           <button type="submit" class="popup__button">Save</button>
@@ -131,7 +131,14 @@
         <img class="card__img" alt=" " src=" " />
         <div class="card__handle">
           <h2 class="card__place"></h2>
-          <button aria-label="Like" type="button" class="card__heart"></button>
+          <div class="card__like-container">
+            <button
+              aria-label="Like"
+              type="button"
+              class="card__heart"
+            ></button>
+            <p class="card__like-count">0</p>
+          </div>
         </div>
       </li>
     </template>

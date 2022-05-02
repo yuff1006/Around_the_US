@@ -6,6 +6,7 @@ import Section from "../components/Section";
 import UserInfo from "../components/UserInfo";
 import PopupWithForm from "../components/PopupWithForm";
 import PopupWithImage from "../components/PopupWithImage";
+import Api from "../components/Api";
 
 // profile icons
 const editIcon = document.querySelector(".profile__edit-icon");
@@ -24,6 +25,15 @@ const profileName = document.querySelector(".profile__name");
 const profileTitle = document.querySelector(".profile__title");
 const profilePic = document.querySelector(".profile__pic");
 
+// instantiate API class
+const api = new Api({
+  baseUrl: "https://around.nomoreparties.co/v1/group-12",
+  headers: {
+    authorization: "1384428a-b01c-46ae-afda-f222b9d7dc7d",
+    "Content-Type": "application/json",
+  },
+});
+
 // add picture form functions
 function renderCard(inputValues) {
   const card = new Card(inputValues, cardSelector, handleCardClick);
@@ -34,25 +44,14 @@ function handlePictureFormSubmit(inputValues) {
   renderCard(inputValues);
 }
 const placePopup = new PopupWithForm(".popup_picture", (inputValues) => {
-  fetch("https://around.nomoreparties.co/v1/group-12/cards", {
-    method: "POST",
-    headers: {
-      authorization: "1384428a-b01c-46ae-afda-f222b9d7dc7d",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      name: inputValues.name,
-      link: inputValues.link,
-    }),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
+  api
+    .addNewCard(inputValues)
+    .then((inputValues) => {
+      handlePictureFormSubmit(inputValues);
     })
     .catch(() => {
       console.log("oops");
     });
-  handlePictureFormSubmit(inputValues);
 });
 
 const imagePopup = new PopupWithImage("#picture-popup");
@@ -66,8 +65,8 @@ let cardSection;
 // profile form functions
 function fillProfileForm() {
   const result = userInfo.getUserInfo();
-  inputProfileName.value = result.userName;
-  inputProfileTitle.value = result.userJob;
+  inputProfileName.value = result.name;
+  inputProfileTitle.value = result.about;
 }
 function handleOpenProfileForm() {
   formFieldAuthor.reset();
@@ -80,26 +79,16 @@ const userInfo = new UserInfo({
   jobSelector: ".profile__title",
 });
 const profilePopup = new PopupWithForm("#popup", (inputValues) => {
-  fetch("https://around.nomoreparties.co/v1/group-12/users/me", {
-    method: "PATCH",
-    headers: {
-      authorization: "1384428a-b01c-46ae-afda-f222b9d7dc7d",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      name: inputValues.userName,
-      about: inputValues.userJob,
-    }),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
-    })
-    .catch(() => {
-      console.log("oops");
-    });
-
-  userInfo.setUserInfo(inputValues);
+  api.initialize().then(() => {
+    api
+      .editUserProfile(inputValues)
+      .then((inputValues) => {
+        userInfo.setUserInfo(inputValues);
+      })
+      .catch(() => {
+        console.log("oops");
+      });
+  });
 });
 
 // validators
@@ -118,33 +107,22 @@ addIcon.addEventListener("mouseup", handleOpenAddPictureForm);
 editIcon.addEventListener("mouseup", handleOpenProfileForm);
 
 // render intial cards
-fetch("https://around.nomoreparties.co/v1/group-12/cards", {
-  headers: {
-    authorization: "1384428a-b01c-46ae-afda-f222b9d7dc7d",
-  },
-})
-  .then((res) => res.json())
-  .then((initialCards) => {
-    cardSection = new Section(
-      {
-        items: initialCards,
-        renderer: renderCard,
-      },
-      cardsContainer
-    );
-    cardSection.renderItems();
-  });
+api.getInitialCards().then((initialCards) => {
+  cardSection = new Section(
+    {
+      items: initialCards,
+      renderer: renderCard,
+    },
+    cardsContainer
+  );
+  cardSection.renderItems();
+});
 
 //  render initial user profile
-fetch("https://around.nomoreparties.co/v1/group-12/users/me", {
-  headers: {
-    authorization: "1384428a-b01c-46ae-afda-f222b9d7dc7d",
-  },
-})
-  .then((res) => res.json())
-  .then(({ name, about, avatar }) => {
-    profileName.textContent = name;
-    profileTitle.textContent = about;
-    profilePic.src = avatar;
-    profilePic.alt = `${name}'s headshot`;
-  });
+
+api.getUserInfo().then(({ name, about, avatar }) => {
+  profileName.textContent = name;
+  profileTitle.textContent = about;
+  profilePic.src = avatar;
+  profilePic.alt = `${name}'s headshot`;
+});

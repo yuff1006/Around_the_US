@@ -3,8 +3,8 @@
   max-height: 127px;
   grid-area: profile-pic;
   margin-right: 30px;
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   object-fit: cover;
 }
 
