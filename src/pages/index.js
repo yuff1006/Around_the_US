@@ -15,7 +15,6 @@ const addIcon = document.querySelector(".profile__add-icon");
 // author, add picture forms
 const editProfileForm = document.querySelector("#popup");
 const addPictureForm = document.querySelector(".popup_picture");
-// const deletePictureConfirmation = document.querySelector(".popup_delete");
 // form fields for the author form and the add picture form
 const formFieldAuthor = document.querySelector("#form-field-author");
 const formFieldPicture = document.querySelector("#form-field-picture");
@@ -35,8 +34,6 @@ const api = new Api({
   },
 });
 
-// initialize card so it can be accessed globally
-
 // add picture form functions
 function renderCard(inputValues) {
   const card = new Card(
@@ -55,10 +52,7 @@ function handlePictureFormSubmit(inputValues) {
 // add picture form submit
 const placePopup = new PopupWithForm(".popup_picture", (inputValues) => {
   api
-    .initialize()
-    .then(() => {
-      return api.addNewCard(inputValues);
-    })
+    .addNewCard(inputValues)
     .then((inputValues) => {
       handlePictureFormSubmit(inputValues);
     })
@@ -87,9 +81,6 @@ function handleTrashButton() {
 // user has pressed yes to confirm, now we interact with the server, and send "true" to Cards.js to delete in DOM
 function handleDeleteConfirmation() {
   deleteConfirmationButton.addEventListener("mouseup", () => {
-    console.log("click");
-    const cardId = card.getCardId();
-
     api.deleteCard(cardId).then((res) => {
       console.log(res);
     });
@@ -117,10 +108,7 @@ const userInfo = new UserInfo({
 });
 const profilePopup = new PopupWithForm("#popup", (inputValues) => {
   api
-    .initialize()
-    .then(() => {
-      return api.editUserProfile(inputValues);
-    })
+    .editUserProfile(inputValues)
     .then((inputValues) => {
       userInfo.setUserInfo(inputValues);
     })
@@ -145,25 +133,6 @@ function handleOpenAddPictureForm() {
 addIcon.addEventListener("mouseup", handleOpenAddPictureForm);
 editIcon.addEventListener("mouseup", handleOpenProfileForm);
 
-// // render intial cards
-// api.getInitialCards().then((initialCards) => {
-//   cardSection = new Section(
-//     {
-//       items: initialCards,
-//       renderer: renderCard,
-//     },
-//     cardsContainer
-//   );
-//   cardSection.renderItems();
-// });
-// let currentUserId = null;
-// //  render initial user profile
-// api.getUserInfo().then(({ name, about, avatar, _id }) => {
-//   currentUserId = _id;
-//   userInfo.setUserInfo({ name, about });
-//   profilePic.src = avatar;
-//   profilePic.alt = `${name}'s headshot`;
-// });
 let currentUserId;
 api.initialize().then(([user, cards]) => {
   currentUserId = user._id;

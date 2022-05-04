@@ -53,7 +53,8 @@ export default class Api {
   getCardLikeInfo() {
     return this._handleFetchResponse("/cards");
   }
-  deleteCard(cardId) {
+  deleteCard() {
+    const cardId = this._getCardId();
     return fetch(
       `https://around.nomoreparties.co/v1/group-12/cards/${cardId}`,
       {
@@ -65,6 +66,7 @@ export default class Api {
       }
     ).then((res) => res.json());
   }
+
   addLike() {}
   removeLike() {}
   editProfilePic() {}
