@@ -23,8 +23,6 @@ const formFieldPicture = document.querySelector("#form-field-picture");
 const inputProfileName = document.querySelector("#popup-name");
 const inputProfileTitle = document.querySelector("#popup-title");
 // profile section on the page
-const profileName = document.querySelector(".profile__name");
-const profileTitle = document.querySelector(".profile__title");
 const profilePic = document.querySelector(".profile__pic");
 const deleteConfirmationButton = document.querySelector("#delete-confirmation");
 console.log(deleteConfirmationButton);
@@ -121,14 +119,14 @@ const profilePopup = new PopupWithForm("#popup", (inputValues) => {
   api
     .initialize()
     .then(() => {
-      api.editUserProfile(inputValues);
+      return api.editUserProfile(inputValues);
     })
     .then((inputValues) => {
       userInfo.setUserInfo(inputValues);
     })
 
-    .catch(() => {
-      console.log("oops");
+    .catch((res) => {
+      console.log(res);
     });
 });
 
@@ -147,23 +145,39 @@ function handleOpenAddPictureForm() {
 addIcon.addEventListener("mouseup", handleOpenAddPictureForm);
 editIcon.addEventListener("mouseup", handleOpenProfileForm);
 
-// render intial cards
-api.getInitialCards().then((initialCards) => {
+// // render intial cards
+// api.getInitialCards().then((initialCards) => {
+//   cardSection = new Section(
+//     {
+//       items: initialCards,
+//       renderer: renderCard,
+//     },
+//     cardsContainer
+//   );
+//   cardSection.renderItems();
+// });
+// let currentUserId = null;
+// //  render initial user profile
+// api.getUserInfo().then(({ name, about, avatar, _id }) => {
+//   currentUserId = _id;
+//   userInfo.setUserInfo({ name, about });
+//   profilePic.src = avatar;
+//   profilePic.alt = `${name}'s headshot`;
+// });
+let currentUserId;
+api.initialize().then(([user, cards]) => {
+  currentUserId = user._id;
+
   cardSection = new Section(
     {
-      items: initialCards,
+      items: cards,
       renderer: renderCard,
     },
     cardsContainer
   );
   cardSection.renderItems();
-});
-let currentUserId = null;
-//  render initial user profile
-api.getUserInfo().then(({ name, about, avatar, _id }) => {
-  currentUserId = _id;
-  profileName.textContent = name;
-  profileTitle.textContent = about;
-  profilePic.src = avatar;
-  profilePic.alt = `${name}'s headshot`;
+
+  userInfo.setUserInfo(user);
+  profilePic.src = user.avatar;
+  profilePic.alt = `${user.name}'s headshot`;
 });
