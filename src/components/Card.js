@@ -1,8 +1,16 @@
 class Card {
-  constructor(cardData, cardSelector, handleCardClick, handleTrashButton) {
+  constructor(
+    cardData,
+    cardSelector,
+    handleCardClick,
+    handleTrashButton,
+    currentUserId
+  ) {
     this._imageLink = cardData.link;
     this._text = cardData.name;
     this._likes = cardData.likes.length;
+    this._currentUserId = currentUserId;
+    this._ownerId = cardData.owner._id;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
     this._handleTrashButton = handleTrashButton;
@@ -18,13 +26,13 @@ class Card {
     heartButton.addEventListener("mouseup", (evt) => {
       this._handleLike(evt);
     });
-    const trashButton = this._cardElement.querySelector(".card__trash");
-    trashButton.addEventListener("mouseup", () => {
-      console.log(this._handleTrashButton());
-      if (this._handleTrashButton()) {
-        this._deleteCard();
-      }
-    });
+    this._trashButton = this._cardElement.querySelector(".card__trash");
+    // trashButton.addEventListener("mouseup", () => {
+    //   console.log(this._handleTrashButton());
+    //   if (this._handleTrashButton()) {
+    //     this._deleteCard();
+    //   }
+    // });
 
     this._cardImage.addEventListener("mouseup", (evt) => {
       this._handleCardClick(evt.target);
@@ -42,10 +50,16 @@ class Card {
     this._cardImage = this._cardElement.querySelector(".card__img");
     const cardTitle = this._cardElement.querySelector(".card__place");
     const likeCount = this._cardElement.querySelector(".card__like-count");
+    this._trashButton = this._cardElement.querySelector(".card__trash");
     likeCount.textContent = this._likes;
     this._cardImage.alt = this._text;
     this._cardImage.src = this._imageLink;
     cardTitle.textContent = this._text;
+
+    if (this._ownerId !== this._currentUserId) {
+      this._trashButton.remove();
+      this._trashButton = null;
+    }
     this._setEventListeners();
 
     return this._cardElement;

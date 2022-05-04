@@ -42,7 +42,8 @@ function renderCard(inputValues) {
     inputValues,
     cardSelector,
     handleCardClick,
-    handleTrashButton
+    handleTrashButton,
+    currentUserId
   );
   const cardEl = card.createCard();
   cardSection.addItem(cardEl);
@@ -76,14 +77,14 @@ const deleteCardConfirmation = new PopupWithConfirmation(
   handleDeleteConfirmation
 );
 function handleTrashButton() {
-  deleteCardConfirmation.open();
-  deleteConfirmationButton.addEventListener("mouseup", () => {
-    return true;
-  });
+  // deleteCardConfirmation.open();
+  // deleteConfirmationButton.addEventListener("mouseup", () => {
+  //   return true;
+  // });
 }
 function handleDeleteConfirmation() {}
 // initialize card Section class variable to take api call result and interact with Section.js
-let cardSection;
+let cardSection = null;
 
 // profile form functions
 function fillProfileForm() {
@@ -142,10 +143,10 @@ api.getInitialCards().then((initialCards) => {
   );
   cardSection.renderItems();
 });
-
+let currentUserId = null;
 //  render initial user profile
-
-api.getUserInfo().then(({ name, about, avatar }) => {
+api.getUserInfo().then(({ name, about, avatar, _id }) => {
+  currentUserId = _id;
   profileName.textContent = name;
   profileTitle.textContent = about;
   profilePic.src = avatar;
