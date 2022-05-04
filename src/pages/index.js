@@ -76,13 +76,20 @@ const deleteCardConfirmation = new PopupWithConfirmation(
   ".popup_delete",
   handleDeleteConfirmation
 );
+
+// to interact with the Card class, open popup, then wait for delete to complete
 function handleTrashButton() {
-  // deleteCardConfirmation.open();
-  // deleteConfirmationButton.addEventListener("mouseup", () => {
-  //   return true;
-  // });
+  deleteCardConfirmation.open();
+  return handleDeleteConfirmation();
 }
-function handleDeleteConfirmation() {}
+
+// user has pressed yes to confirm, now we interact with the server, and send "true" to Cards.js to delete in DOM
+function handleDeleteConfirmation() {
+  console.log(card.getCardId());
+  // need to pass in a card id to deleteCard but how do i get it ?????????????
+  // api.deleteCard();
+  return true;
+}
 // initialize card Section class variable to take api call result and interact with Section.js
 let cardSection = null;
 

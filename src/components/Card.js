@@ -11,6 +11,7 @@ class Card {
     this._likes = cardData.likes.length;
     this._currentUserId = currentUserId;
     this._ownerId = cardData.owner._id;
+    this._cardId = cardData._id;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
     this._handleTrashButton = handleTrashButton;
@@ -21,18 +22,22 @@ class Card {
       .content.querySelector(".card")
       .cloneNode(true);
   }
+  getCardId() {
+    return this._cardId;
+  }
   _setEventListeners() {
     const heartButton = this._cardElement.querySelector(".card__heart");
     heartButton.addEventListener("mouseup", (evt) => {
       this._handleLike(evt);
     });
-    this._trashButton = this._cardElement.querySelector(".card__trash");
-    // trashButton.addEventListener("mouseup", () => {
-    //   console.log(this._handleTrashButton());
-    //   if (this._handleTrashButton()) {
-    //     this._deleteCard();
-    //   }
-    // });
+    if (this._trashButton) {
+      this._trashButton.addEventListener("mouseup", () => {
+        this._handleTrashButton();
+        if (this._handleTrashButton()) {
+          this._deleteCard();
+        }
+      });
+    }
 
     this._cardImage.addEventListener("mouseup", (evt) => {
       this._handleCardClick(evt.target);
