@@ -23,6 +23,7 @@ class Card {
       .cloneNode(true);
   }
   getCardId() {
+    console.log(this._cardId);
     return this._cardId;
   }
   _setEventListeners() {
@@ -32,7 +33,9 @@ class Card {
     });
     if (this._trashButton) {
       this._trashButton.addEventListener("mouseup", () => {
+        console.log(this._cardId);
         this._handleTrashButton();
+
         if (this._handleTrashButton()) {
           this._deleteCard();
         }

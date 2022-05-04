@@ -27,6 +27,7 @@ const profileName = document.querySelector(".profile__name");
 const profileTitle = document.querySelector(".profile__title");
 const profilePic = document.querySelector(".profile__pic");
 const deleteConfirmationButton = document.querySelector("#delete-confirmation");
+console.log(deleteConfirmationButton);
 // instantiate API class
 const api = new Api({
   baseUrl: "https://around.nomoreparties.co/v1/group-12",
@@ -35,6 +36,8 @@ const api = new Api({
     "Content-Type": "application/json",
   },
 });
+
+// initialize card so it can be accessed globally
 
 // add picture form functions
 function renderCard(inputValues) {
@@ -85,10 +88,15 @@ function handleTrashButton() {
 
 // user has pressed yes to confirm, now we interact with the server, and send "true" to Cards.js to delete in DOM
 function handleDeleteConfirmation() {
-  console.log(card.getCardId());
-  // need to pass in a card id to deleteCard but how do i get it ?????????????
-  // api.deleteCard();
-  return true;
+  deleteConfirmationButton.addEventListener("mouseup", () => {
+    console.log("click");
+    const cardId = card.getCardId();
+
+    api.deleteCard(cardId).then((res) => {
+      console.log(res);
+    });
+    return true;
+  });
 }
 // initialize card Section class variable to take api call result and interact with Section.js
 let cardSection = null;

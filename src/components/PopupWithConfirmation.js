@@ -20,7 +20,4 @@ export default class PopupWithConfirmation extends Popup {
     super.close();
     this._button.removeEventListener("mouseup", this._handleSubmitClick);
   }
-  open() {
-    super.open();
-  }
 }
