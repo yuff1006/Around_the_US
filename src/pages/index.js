@@ -34,6 +34,15 @@ const api = new Api({
   },
 });
 
+// handle Like Click function passed in as callback to Card.js
+function handleLikeClick(cardId, action) {
+  if (action === "remove") {
+    api.removeLike(cardId);
+  } else {
+    api.addLike(cardId);
+  }
+}
+
 // add picture form functions
 function renderCard(inputValues) {
   const card = new Card(
@@ -41,7 +50,8 @@ function renderCard(inputValues) {
     cardSelector,
     handleCardClick,
     handleTrashButton,
-    currentUserId
+    currentUserId,
+    handleLikeClick
   );
   const cardEl = card.createCard();
   cardSection.addItem(cardEl);

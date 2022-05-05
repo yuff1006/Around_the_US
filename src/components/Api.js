@@ -66,7 +66,29 @@ export default class Api {
     ).then((res) => res.json());
   }
 
-  addLike() {}
-  removeLike() {}
+  addLike(cardId) {
+    return fetch(
+      `https://around.nomoreparties.co/v1/group-12/cards/likes/${cardId}`,
+      {
+        method: "PUT",
+        headers: {
+          authorization: "1384428a-b01c-46ae-afda-f222b9d7dc7d",
+          "Content-Type": "application/json",
+        },
+      }
+    ).then((res) => res.json());
+  }
+  removeLike(cardId) {
+    return fetch(
+      `https://around.nomoreparties.co/v1/group-12/cards/likes/${cardId}`,
+      {
+        method: "DELETE",
+        headers: {
+          authorization: "1384428a-b01c-46ae-afda-f222b9d7dc7d",
+          "Content-Type": "application/json",
+        },
+      }
+    ).then((res) => res.json());
+  }
   editProfilePic() {}
 }
