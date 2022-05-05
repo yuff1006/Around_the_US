@@ -67,26 +67,19 @@ function handleCardClick(image) {
   imagePopup.open(image);
 }
 
-const deleteCardConfirmation = new PopupWithConfirmation(
-  ".popup_delete",
-  handleDeleteConfirmation
-);
+const deleteCardConfirmation = new PopupWithConfirmation(".popup_delete");
 
 // to interact with the Card class, open popup, then wait for delete to complete
-function handleTrashButton() {
+function handleTrashButton(card) {
+  deleteCardConfirmation.setSubmit(() => {
+    api.deleteCard(card.getCardId()).then(() => {
+      card.deleteCard();
+      deleteCardConfirmation.close();
+    });
+  });
   deleteCardConfirmation.open();
-  return handleDeleteConfirmation();
 }
 
-// user has pressed yes to confirm, now we interact with the server, and send "true" to Cards.js to delete in DOM
-function handleDeleteConfirmation() {
-  deleteConfirmationButton.addEventListener("mouseup", () => {
-    api.deleteCard(cardId).then((res) => {
-      console.log(res);
-    });
-    return true;
-  });
-}
 // initialize card Section class variable to take api call result and interact with Section.js
 let cardSection = null;
 

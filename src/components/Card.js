@@ -33,12 +33,7 @@ class Card {
     });
     if (this._trashButton) {
       this._trashButton.addEventListener("mouseup", () => {
-        console.log(this._cardId);
-        this._handleTrashButton();
-
-        if (this._handleTrashButton()) {
-          this._deleteCard();
-        }
+        this._handleTrashButton(this);
       });
     }
 
@@ -49,7 +44,7 @@ class Card {
   _handleLike(evt) {
     evt.target.classList.toggle("card__heart_active");
   }
-  _deleteCard() {
+  deleteCard() {
     this._cardElement.remove();
     this._cardElement = null;
   }
