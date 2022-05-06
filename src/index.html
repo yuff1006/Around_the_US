@@ -16,7 +16,15 @@
     </header>
     <main class="content">
       <section class="profile">
-        <img alt="" class="profile__pic" src="" />
+        <div class="profile__pic-container">
+          <img alt="" class="profile__pic" src="" />
+          <button
+            type="button"
+            aria-label="Edit Profile Picture"
+            class="profile__pic-edit"
+            id="profile-pic-edit"
+          ></button>
+        </div>
         <div class="profile__name-and-icon">
           <h1 class="profile__name"></h1>
           <button
@@ -110,6 +118,29 @@
           />
           <span class="popup__error" id="popup-url-error"></span>
           <button type="submit" class="popup__button">Create</button>
+        </form>
+        <button aria-label="Close" type="button" class="popup__close"></button>
+      </div>
+    </div>
+
+    <div class="popup popup_profile-pic">
+      <div class="popup__container">
+        <h2 class="popup__title">Change Profile Picture</h2>
+        <form
+          class="popup__form"
+          id="form-field-profile-picture"
+          name="popup-profile-picture"
+        >
+          <input
+            class="popup__info"
+            id="popup-profile-pic-url"
+            placeholder="https://somewebsite.com/someimage.jpg"
+            required
+            type="url"
+            name="link"
+          />
+          <span class="popup__error" id="popup-profile-pic-url-error"></span>
+          <button type="submit" class="popup__button">Save</button>
         </form>
         <button aria-label="Close" type="button" class="popup__close"></button>
       </div>
