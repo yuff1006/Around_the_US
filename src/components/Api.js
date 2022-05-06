@@ -27,83 +27,64 @@ export default class Api {
   editUserProfile(inputValues) {
     return fetch("https://around.nomoreparties.co/v1/group-12/users/me", {
       method: "PATCH",
-      headers: {
-        authorization: "1384428a-b01c-46ae-afda-f222b9d7dc7d",
-        "Content-Type": "application/json",
-      },
+      headers: this._headers,
       body: JSON.stringify({
         name: inputValues.name,
         about: inputValues.about,
       }),
-    }).then((res) => res.json());
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        return Promise.reject(`Error: ${res.status}`);
+      }
+    });
   }
   addNewCard(inputValues) {
     return fetch("https://around.nomoreparties.co/v1/group-12/cards", {
       method: "POST",
-      headers: {
-        authorization: "1384428a-b01c-46ae-afda-f222b9d7dc7d",
-        "Content-Type": "application/json",
-      },
+      headers: this._headers,
       body: JSON.stringify({
         name: inputValues.name,
         link: inputValues.link,
       }),
-    }).then((res) => res.json());
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        return Promise.reject(`Error: ${res.status}`);
+      }
+    });
   }
   getCardLikeInfo() {
     return this._handleFetchResponse("/cards");
   }
   deleteCard(cardId) {
-    return fetch(
-      `https://around.nomoreparties.co/v1/group-12/cards/${cardId}`,
-      {
-        method: "DELETE",
-        headers: {
-          authorization: "1384428a-b01c-46ae-afda-f222b9d7dc7d",
-          "Content-Type": "application/json",
-        },
-      }
-    ).then((res) => res.json());
+    return this._handleFetchResponse(`/cards/${cardId}`, "DELETE");
   }
 
   addLike(cardId) {
-    return fetch(
-      `https://around.nomoreparties.co/v1/group-12/cards/likes/${cardId}`,
-      {
-        method: "PUT",
-        headers: {
-          authorization: "1384428a-b01c-46ae-afda-f222b9d7dc7d",
-          "Content-Type": "application/json",
-        },
-      }
-    ).then((res) => res.json());
+    return this._handleFetchResponse(`/cards/likes/${cardId}`, "PUT");
   }
   removeLike(cardId) {
-    return fetch(
-      `https://around.nomoreparties.co/v1/group-12/cards/likes/${cardId}`,
-      {
-        method: "DELETE",
-        headers: {
-          authorization: "1384428a-b01c-46ae-afda-f222b9d7dc7d",
-          "Content-Type": "application/json",
-        },
-      }
-    ).then((res) => res.json());
+    return this._handleFetchResponse(`/cards/likes/${cardId}`, "DELETE");
   }
   editProfilePic(avatarLink) {
-    console.log(avatarLink.avatar);
     return fetch(
       `https://around.nomoreparties.co/v1/group-12/users/me/avatar`,
       {
         method: "PATCH",
-        headers: {
-          authorization: "1384428a-b01c-46ae-afda-f222b9d7dc7d",
-          "Content-Type": "application/json",
-        },
+        headers: this._headers,
         body: JSON.stringify({
           avatar: avatarLink.avatar,
         }),
       }
-    ).then((res) => res.json());
+    ).then((res) => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        return Promise.reject(`Error: ${res.status}`);
+      }
+    });
   }
 }

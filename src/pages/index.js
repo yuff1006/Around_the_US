@@ -19,14 +19,11 @@ const editProfilePicForm = document.querySelector(".popup_profile-pic");
 // form fields for the author form and the add picture form
 const formFieldAuthor = document.querySelector("#form-field-author");
 const formFieldPicture = document.querySelector("#form-field-picture");
-const formFieldProfilePic = document.querySelector(
-  "#form-field-profile-picture"
-);
 // input fields for profile form popup
 const inputProfileName = document.querySelector("#popup-name");
 const inputProfileTitle = document.querySelector("#popup-title");
 // profile section on the page
-const profilePic = document.querySelector(".profile__pic");
+const profilePicInput = document.querySelector("#popup-profile-pic-url");
 const editProfilePicIcon = document.querySelector(".profile__pic-edit");
 
 // instantiate API class
@@ -70,9 +67,8 @@ const placePopup = new PopupWithForm(".popup_picture", (inputValues) => {
     .then((inputValues) => {
       handlePictureFormSubmit(inputValues);
     })
-
-    .catch(() => {
-      console.log("oops");
+    .catch((res) => {
+      alert(res);
     });
 });
 
@@ -85,11 +81,16 @@ const deleteCardConfirmation = new PopupWithConfirmation(".popup_delete");
 
 // to interact with the Card class, open popup, then wait for delete to complete
 function handleTrashButton(card) {
-  deleteCardConfirmation.setSubmit(() => {
-    api.deleteCard(card.getCardId()).then(() => {
-      card.deleteCard();
-      deleteCardConfirmation.close();
-    });
+  deleteCardConfirmation.setSubmit((button) => {
+    api
+      .deleteCard(card.getCardId())
+      .then(() => {
+        card.deleteCard();
+        deleteCardConfirmation.close();
+      })
+      .catch((res) => {
+        alert(res);
+      });
   });
   deleteCardConfirmation.open();
 }
@@ -114,28 +115,29 @@ const userInfo = new UserInfo({
   jobSelector: ".profile__title",
   avatarSelector: ".profile__pic",
 });
-const profilePopup = new PopupWithForm("#popup", (inputValues) => {
+const profilePopup = new PopupWithForm("#popup", (inputValues, button) => {
+  renderLoading(button);
   api
     .editUserProfile(inputValues)
     .then((inputValues) => {
       userInfo.setUserInfo(inputValues);
     })
-
     .catch((res) => {
-      console.log(res);
+      alert(res);
     });
 });
 
 const profilePicPopup = new PopupWithForm(
   ".popup_profile-pic",
-  (inputValues) => {
+  (inputValue, button) => {
+    renderLoading(button);
     api
       .editProfilePic(inputValues)
       .then((inputValues) => {
         userInfo.setUserAvatar(inputValues);
       })
       .catch((res) => {
-        console.log(res);
+        alert(res);
       });
   }
 );
@@ -159,7 +161,7 @@ function handleOpenAddPictureForm() {
 }
 
 function handleOpenEditProfilePicForm() {
-  formFieldProfilePic.reset();
+  profilePicInput.value = userInfo.getUserInfo().avatar;
   editProfilePicFormValidator.resetValidation();
   profilePicPopup.open();
 }
@@ -168,19 +170,26 @@ editProfileIcon.addEventListener("mouseup", handleOpenProfileForm);
 editProfilePicIcon.addEventListener("mouseup", handleOpenEditProfilePicForm);
 
 let currentUserId;
-api.initialize().then(([user, cards]) => {
-  currentUserId = user._id;
+api
+  .initialize()
+  .then(([user, cards]) => {
+    currentUserId = user._id;
+    cardSection = new Section(
+      {
+        items: cards,
+        renderer: renderCard,
+      },
+      cardsContainer
+    );
+    cardSection.renderItems();
 
-  cardSection = new Section(
-    {
-      items: cards,
-      renderer: renderCard,
-    },
-    cardsContainer
-  );
-  cardSection.renderItems();
+    userInfo.setUserInfo(user);
+  })
+  .catch((res) => {
+    alert(res);
+  });
 
-  userInfo.setUserInfo(user);
-  // profilePic.src = user.avatar;
-  // profilePic.alt = `${user.name}'s headshot`;
-});
+function renderLoading(button) {
+  button.textContent = button.textContent.replace("e", "ing...");
+  console.log(button.textContent);
+}
