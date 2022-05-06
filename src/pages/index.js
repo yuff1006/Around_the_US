@@ -10,21 +10,25 @@ import Api from "../components/Api";
 import PopupWithConfirmation from "../components/PopupWithConfirmation";
 
 // profile icons
-const editIcon = document.querySelector(".profile__edit-icon");
-const addIcon = document.querySelector(".profile__add-icon");
+const editProfileIcon = document.querySelector(".profile__edit-icon");
+const addPictureIcon = document.querySelector(".profile__add-icon");
 // author, add picture forms
 const editProfileForm = document.querySelector("#popup");
 const addPictureForm = document.querySelector(".popup_picture");
+const editProfilePicForm = document.querySelector(".popup_profile-pic");
 // form fields for the author form and the add picture form
 const formFieldAuthor = document.querySelector("#form-field-author");
 const formFieldPicture = document.querySelector("#form-field-picture");
+const formFieldProfilePic = document.querySelector(
+  "#form-field-profile-picture"
+);
 // input fields for profile form popup
 const inputProfileName = document.querySelector("#popup-name");
 const inputProfileTitle = document.querySelector("#popup-title");
 // profile section on the page
 const profilePic = document.querySelector(".profile__pic");
-const deleteConfirmationButton = document.querySelector("#delete-confirmation");
-console.log(deleteConfirmationButton);
+const editProfilePicIcon = document.querySelector(".profile__pic-edit");
+
 // instantiate API class
 const api = new Api({
   baseUrl: "https://around.nomoreparties.co/v1/group-12",
@@ -108,6 +112,7 @@ function handleOpenProfileForm() {
 const userInfo = new UserInfo({
   nameSelector: ".profile__name",
   jobSelector: ".profile__title",
+  avatarSelector: ".profile__pic",
 });
 const profilePopup = new PopupWithForm("#popup", (inputValues) => {
   api
@@ -121,20 +126,46 @@ const profilePopup = new PopupWithForm("#popup", (inputValues) => {
     });
 });
 
+const profilePicPopup = new PopupWithForm(
+  ".popup_profile-pic",
+  (inputValues) => {
+    api
+      .editProfilePic(inputValues)
+      .then((inputValues) => {
+        userInfo.setUserAvatar(inputValues);
+      })
+      .catch((res) => {
+        console.log(res);
+      });
+  }
+);
+
 // validators
 const addProfileFormValidator = new FormValidator(settings, editProfileForm);
 addProfileFormValidator.enableValidator();
 const addPictureFormValidator = new FormValidator(settings, addPictureForm);
 addPictureFormValidator.enableValidator();
+const editProfilePicFormValidator = new FormValidator(
+  settings,
+  editProfilePicForm
+);
+editProfilePicFormValidator.enableValidator();
 
 function handleOpenAddPictureForm() {
   formFieldPicture.reset();
+
   addPictureFormValidator.resetValidation();
   placePopup.open();
 }
 
-addIcon.addEventListener("mouseup", handleOpenAddPictureForm);
-editIcon.addEventListener("mouseup", handleOpenProfileForm);
+function handleOpenEditProfilePicForm() {
+  formFieldProfilePic.reset();
+  editProfilePicFormValidator.resetValidation();
+  profilePicPopup.open();
+}
+addPictureIcon.addEventListener("mouseup", handleOpenAddPictureForm);
+editProfileIcon.addEventListener("mouseup", handleOpenProfileForm);
+editProfilePicIcon.addEventListener("mouseup", handleOpenEditProfilePicForm);
 
 let currentUserId;
 api.initialize().then(([user, cards]) => {
@@ -150,6 +181,6 @@ api.initialize().then(([user, cards]) => {
   cardSection.renderItems();
 
   userInfo.setUserInfo(user);
-  profilePic.src = user.avatar;
-  profilePic.alt = `${user.name}'s headshot`;
+  // profilePic.src = user.avatar;
+  // profilePic.alt = `${user.name}'s headshot`;
 });

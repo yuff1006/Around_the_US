@@ -90,5 +90,20 @@ export default class Api {
       }
     ).then((res) => res.json());
   }
-  editProfilePic() {}
+  editProfilePic(avatarLink) {
+    console.log(avatarLink.avatar);
+    return fetch(
+      `https://around.nomoreparties.co/v1/group-12/users/me/avatar`,
+      {
+        method: "PATCH",
+        headers: {
+          authorization: "1384428a-b01c-46ae-afda-f222b9d7dc7d",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          avatar: avatarLink.avatar,
+        }),
+      }
+    ).then((res) => res.json());
+  }
 }
