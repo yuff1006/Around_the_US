@@ -6,7 +6,7 @@ import Section from "../components/Section";
 import UserInfo from "../components/UserInfo";
 import PopupWithForm from "../components/PopupWithForm";
 import PopupWithImage from "../components/PopupWithImage";
-import Api from "../components/Api";
+import Api from "../utils/Api";
 import PopupWithConfirmation from "../components/PopupWithConfirmation";
 
 // profile icons
@@ -129,7 +129,7 @@ const profilePopup = new PopupWithForm("#popup", (inputValues, button) => {
 
 const profilePicPopup = new PopupWithForm(
   ".popup_profile-pic",
-  (inputValue, button) => {
+  (inputValues, button) => {
     renderLoading(button);
     api
       .editProfilePic(inputValues)

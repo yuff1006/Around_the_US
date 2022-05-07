@@ -7,15 +7,15 @@ export default class PopupWithConfirmation extends Popup {
   }
 
   setSubmit(handleFormSubmit) {
-    this.handleFormSubmit = handleFormSubmit;
+    this._handleFormSubmit = handleFormSubmit;
     //wait to be passed in in index.js
   }
   close() {
     super.close();
-    this._button.removeEventListener("mouseup", this.handleFormSubmit);
+    this._button.removeEventListener("mouseup", this._handleFormSubmit);
   }
   open() {
     super.open();
-    this._button.addEventListener("mouseup", this.handleFormSubmit);
+    this._button.addEventListener("mouseup", this._handleFormSubmit);
   }
 }

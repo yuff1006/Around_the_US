@@ -30,8 +30,8 @@ export default class Popup {
     this._popup.classList.remove("popup_open");
 
     document.removeEventListener("keyup", this._handleEscClose);
-    this._closeButton.removeEventListener("keyup", this._handleButtonClose);
-    this._popup.removeEventListener("keyup", this._handleOverlayClose);
+    this._closeButton.removeEventListener("mouseup", this._handleButtonClose);
+    this._popup.removeEventListener("mouseup", this._handleOverlayClose);
   }
 
   _setEventListeners() {
