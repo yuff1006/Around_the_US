@@ -25,10 +25,9 @@ export default class PopupWithForm extends Popup {
   }
   _handleSubmitClick = () => {
     const inputValues = this._getInputValues();
-    this._button = this._popup.querySelector(".popup__button");
+    const submitButton = this._popup.querySelector(".popup__button");
     //wait to be passed in in index.js
-    this._handleFormSubmit(inputValues, this._button);
-    this.close();
+    this._handleFormSubmit(inputValues, submitButton);
   };
   close() {
     super.close();

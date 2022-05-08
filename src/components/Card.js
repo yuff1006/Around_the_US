@@ -27,17 +27,27 @@ class Card {
   getCardId() {
     return this._cardId;
   }
+  updateLikes(serverResponse) {
+    this._likes = serverResponse;
+    this._renderLikes();
+  }
+
+  _renderLikes() {
+    if (this._isLiked()) {
+      this._handleLike(this._heartButton, "liked");
+    } else {
+      this._handleLike(this._heartButton, "notLiked");
+    }
+  }
   _setEventListeners() {
-    this._heartButton.addEventListener("mouseup", (evt) => {
+    this._heartButton.addEventListener("mouseup", () => {
       if (this._heartButton.classList.contains("card__heart_active")) {
-        this._handleLikeClick(this._cardId, "remove");
-        this._likeCount.textContent--;
+        this._handleLikeClick(this._cardId, "remove", this);
       } else {
-        this._handleLikeClick(this._cardId, "add");
-        this._likeCount.textContent++;
+        this._handleLikeClick(this._cardId, "add", this);
       }
-      this._handleLike(evt.target);
     });
+
     if (this._trashButton) {
       this._trashButton.addEventListener("mouseup", () => {
         this._handleTrashButton(this);
@@ -48,8 +58,18 @@ class Card {
       this._handleCardClick(evt.target);
     });
   }
-  _handleLike(element) {
-    element.classList.toggle("card__heart_active");
+  _isLiked() {
+    return this._likes.some((user) => {
+      return user._id === this._currentUserId;
+    });
+  }
+  _handleLike(element, action) {
+    this._likeCount.textContent = this._likes.length;
+    if (action === "liked") {
+      element.classList.add("card__heart_active");
+    } else {
+      element.classList.remove("card__heart_active");
+    }
   }
   deleteCard() {
     this._cardElement.remove();
@@ -62,7 +82,7 @@ class Card {
     this._likeCount = this._cardElement.querySelector(".card__like-count");
     this._trashButton = this._cardElement.querySelector(".card__trash");
     this._heartButton = this._cardElement.querySelector(".card__heart");
-    this._likeCount.textContent = this._likes.length;
+
     this._cardImage.alt = this._text;
     this._cardImage.src = this._imageLink;
     cardTitle.textContent = this._text;
@@ -72,12 +92,8 @@ class Card {
       this._trashButton = null;
     }
     this._setEventListeners();
+    this._renderLikes();
 
-    this._likes.forEach((user) => {
-      if (user._id === this._currentUserId) {
-        this._handleLike(this._heartButton);
-      }
-    });
     return this._cardElement;
   }
 }

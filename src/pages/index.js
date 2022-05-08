@@ -36,11 +36,25 @@ const api = new Api({
 });
 
 // handle Like Click function passed in as callback to Card.js
-function handleLikeClick(cardId, action) {
+function handleLikeClick(cardId, action, card) {
   if (action === "remove") {
-    api.removeLike(cardId);
+    api
+      .removeLike(cardId)
+      .then((res) => {
+        card.updateLikes(res.likes);
+      })
+      .catch((res) => {
+        alert(res);
+      });
   } else {
-    api.addLike(cardId);
+    api
+      .addLike(cardId)
+      .then((res) => {
+        card.updateLikes(res.likes);
+      })
+      .catch((res) => {
+        alert(res);
+      });
   }
 }
 
@@ -66,6 +80,7 @@ const placePopup = new PopupWithForm(".popup_picture", (inputValues) => {
     .addNewCard(inputValues)
     .then((inputValues) => {
       handlePictureFormSubmit(inputValues);
+      placePopup.close();
     })
     .catch((res) => {
       alert(res);
@@ -81,7 +96,7 @@ const deleteCardConfirmation = new PopupWithConfirmation(".popup_delete");
 
 // to interact with the Card class, open popup, then wait for delete to complete
 function handleTrashButton(card) {
-  deleteCardConfirmation.setSubmit((button) => {
+  deleteCardConfirmation.setSubmit(() => {
     api
       .deleteCard(card.getCardId())
       .then(() => {
@@ -121,6 +136,7 @@ const profilePopup = new PopupWithForm("#popup", (inputValues, button) => {
     .editUserProfile(inputValues)
     .then((inputValues) => {
       userInfo.setUserInfo(inputValues);
+      profilePopup.close();
     })
     .catch((res) => {
       alert(res);
