@@ -27,17 +27,23 @@ class Card {
   getCardId() {
     return this._cardId;
   }
-  updateLikes(serverResponse) {
-    this._likes = serverResponse;
+  updateLikes(likes) {
+    this._likes = likes;
     this._renderLikes();
   }
 
   _renderLikes() {
+    this._likeCount.textContent = this._likes.length;
     if (this._isLiked()) {
-      this._handleLike(this._heartButton, "liked");
+      this._heartButton.classList.add("card__heart_active");
     } else {
-      this._handleLike(this._heartButton, "notLiked");
+      this._heartButton.classList.remove("card__heart_active");
     }
+  }
+  _isLiked() {
+    return this._likes.some((user) => {
+      return user._id === this._currentUserId;
+    });
   }
   _setEventListeners() {
     this._heartButton.addEventListener("mouseup", () => {
@@ -58,19 +64,7 @@ class Card {
       this._handleCardClick(evt.target);
     });
   }
-  _isLiked() {
-    return this._likes.some((user) => {
-      return user._id === this._currentUserId;
-    });
-  }
-  _handleLike(element, action) {
-    this._likeCount.textContent = this._likes.length;
-    if (action === "liked") {
-      element.classList.add("card__heart_active");
-    } else {
-      element.classList.remove("card__heart_active");
-    }
-  }
+
   deleteCard() {
     this._cardElement.remove();
     this._cardElement = null;

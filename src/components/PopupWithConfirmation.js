@@ -25,6 +25,7 @@ export default class PopupWithConfirmation extends Popup {
       this._button.textContent = buttonText;
     } else {
       this._button.textContent = this._buttonOriginalText;
+      this._button.disabled = false;
     }
   }
 }

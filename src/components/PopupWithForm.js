@@ -27,7 +27,6 @@ export default class PopupWithForm extends Popup {
   }
   _handleSubmitClick = () => {
     const inputValues = this._getInputValues();
-
     //wait to be passed in in index.js
     this._handleFormSubmit(inputValues, this._button);
   };
@@ -41,6 +40,7 @@ export default class PopupWithForm extends Popup {
       this._button.textContent = buttonText;
     } else {
       this._button.textContent = this._buttonOriginalText;
+      this._button.disabled = false;
     }
   }
 }

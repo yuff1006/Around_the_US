@@ -8,9 +8,8 @@ An Instagram-like app that displays user's pictures and places, with functionali
 
 1. Object Oriented Programming with loose-coupling relationships between classes to dynamically generate components
 2. Form Validation
-3. Dynamically generate cards of places through the add button
-4. Dynamically delete cards through interactive trash button
-5. Dynamically change author name and title through edit button
+3. Make API calls to the server for pulling and pushing all data on the website
+4. User can customize their name, title, profile picture, and cards of places that in turn get stored in the server.
 
 ## Technologies and Standards Used
 
@@ -18,7 +17,8 @@ An Instagram-like app that displays user's pictures and places, with functionali
 - CSS
 - JavaScript
 - Object Oriented Programming
-- BEM file structure
+- Asynchronous Programming
+- API
 - Webpack
 
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)

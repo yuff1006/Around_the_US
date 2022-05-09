@@ -71,16 +71,14 @@ function renderCard(inputValues) {
   const cardEl = card.createCard();
   cardSection.addItem(cardEl);
 }
-function handlePictureFormSubmit(inputValues) {
-  renderCard(inputValues);
-}
+
 // add picture form submit
 const placePopup = new PopupWithForm(".popup_picture", (inputValues) => {
   placePopup.renderLoading(true, "Creating...");
   api
     .addNewCard(inputValues)
     .then((inputValues) => {
-      handlePictureFormSubmit(inputValues);
+      renderCard(inputValues);
       placePopup.close();
     })
     .catch((res) => {
@@ -144,7 +142,7 @@ const profilePopup = new PopupWithForm("#popup", (inputValues, button) => {
     .editUserProfile(inputValues)
     .then((inputValues) => {
       userInfo.setUserInfo(inputValues);
-      console.log("closed");
+      profilePopup.close();
     })
     .catch((res) => {
       alert(res);
@@ -162,6 +160,7 @@ const profilePicPopup = new PopupWithForm(
       .editProfilePic(inputValues)
       .then((inputValues) => {
         userInfo.setUserAvatar(inputValues);
+        profilePicPopup.close();
       })
       .catch((res) => {
         alert(res);
