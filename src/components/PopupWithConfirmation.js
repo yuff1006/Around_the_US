@@ -4,6 +4,7 @@ export default class PopupWithConfirmation extends Popup {
   constructor(popupSelector) {
     super(popupSelector);
     this._button = this._popup.querySelector(".popup__button");
+    this._buttonOriginalText = this._button.textContent;
   }
 
   setSubmit(handleFormSubmit) {
@@ -17,5 +18,13 @@ export default class PopupWithConfirmation extends Popup {
   open() {
     super.open();
     this._button.addEventListener("mouseup", this._handleFormSubmit);
+  }
+  renderLoading(isLoading, buttonText) {
+    if (isLoading) {
+      this._button.disabled = true;
+      this._button.textContent = buttonText;
+    } else {
+      this._button.textContent = this._buttonOriginalText;
+    }
   }
 }

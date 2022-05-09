@@ -76,6 +76,7 @@ function handlePictureFormSubmit(inputValues) {
 }
 // add picture form submit
 const placePopup = new PopupWithForm(".popup_picture", (inputValues) => {
+  placePopup.renderLoading(true, "Creating...");
   api
     .addNewCard(inputValues)
     .then((inputValues) => {
@@ -84,6 +85,9 @@ const placePopup = new PopupWithForm(".popup_picture", (inputValues) => {
     })
     .catch((res) => {
       alert(res);
+    })
+    .finally(() => {
+      placePopup.renderLoading(false, "Creating...");
     });
 });
 
@@ -97,6 +101,7 @@ const deleteCardConfirmation = new PopupWithConfirmation(".popup_delete");
 // to interact with the Card class, open popup, then wait for delete to complete
 function handleTrashButton(card) {
   deleteCardConfirmation.setSubmit(() => {
+    deleteCardConfirmation.renderLoading(true, "Saving...");
     api
       .deleteCard(card.getCardId())
       .then(() => {
@@ -105,6 +110,9 @@ function handleTrashButton(card) {
       })
       .catch((res) => {
         alert(res);
+      })
+      .finally(() => {
+        deleteCardConfirmation.renderLoading(false, "Saving...");
       });
   });
   deleteCardConfirmation.open();
@@ -131,22 +139,25 @@ const userInfo = new UserInfo({
   avatarSelector: ".profile__pic",
 });
 const profilePopup = new PopupWithForm("#popup", (inputValues, button) => {
-  renderLoading(button);
+  profilePopup.renderLoading(true, "Saving");
   api
     .editUserProfile(inputValues)
     .then((inputValues) => {
       userInfo.setUserInfo(inputValues);
-      profilePopup.close();
+      console.log("closed");
     })
     .catch((res) => {
       alert(res);
+    })
+    .finally(() => {
+      profilePopup.renderLoading(false, "Saving");
     });
 });
 
 const profilePicPopup = new PopupWithForm(
   ".popup_profile-pic",
   (inputValues, button) => {
-    renderLoading(button);
+    profilePicPopup.renderLoading(true, "Saving...");
     api
       .editProfilePic(inputValues)
       .then((inputValues) => {
@@ -154,6 +165,9 @@ const profilePicPopup = new PopupWithForm(
       })
       .catch((res) => {
         alert(res);
+      })
+      .finally(() => {
+        profilePicPopup.renderLoading(false, "Saving...");
       });
   }
 );
@@ -185,7 +199,7 @@ addPictureIcon.addEventListener("mouseup", handleOpenAddPictureForm);
 editProfileIcon.addEventListener("mouseup", handleOpenProfileForm);
 editProfilePicIcon.addEventListener("mouseup", handleOpenEditProfilePicForm);
 
-let currentUserId;
+let currentUserId = null;
 api
   .initialize()
   .then(([user, cards]) => {
@@ -204,8 +218,3 @@ api
   .catch((res) => {
     alert(res);
   });
-
-function renderLoading(button) {
-  button.textContent = button.textContent.replace("e", "ing...");
-  console.log(button.textContent);
-}

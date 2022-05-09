@@ -6,6 +6,8 @@ export default class PopupWithForm extends Popup {
     this._handleFormSubmit = handleFormSubmit;
     this._formList = [...this._popup.querySelectorAll(".popup__form")];
     this._formEl = this._popup.querySelector(".popup__form");
+    this._button = this._popup.querySelector(".popup__button");
+    this._buttonOriginalText = this._button.textContent;
   }
   // create and return an object from all the input boxes' answers
   _getInputValues() {
@@ -25,12 +27,20 @@ export default class PopupWithForm extends Popup {
   }
   _handleSubmitClick = () => {
     const inputValues = this._getInputValues();
-    const submitButton = this._popup.querySelector(".popup__button");
+
     //wait to be passed in in index.js
-    this._handleFormSubmit(inputValues, submitButton);
+    this._handleFormSubmit(inputValues, this._button);
   };
   close() {
     super.close();
     this._formEl.removeEventListener("submit", this._handleSubmitClick);
+  }
+  renderLoading(isLoading, buttonText) {
+    if (isLoading) {
+      this._button.disabled = true;
+      this._button.textContent = buttonText;
+    } else {
+      this._button.textContent = this._buttonOriginalText;
+    }
   }
 }

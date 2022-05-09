@@ -87,7 +87,9 @@
             name="about"
           />
           <span class="popup__error" id="popup-title-error"></span>
-          <button type="submit" class="popup__button">Save</button>
+          <button type="submit" class="popup__button" id="edit-profile-button">
+            Save
+          </button>
         </form>
         <button aria-label="Close" type="button" class="popup__close"></button>
       </div>
@@ -117,7 +119,9 @@
             name="link"
           />
           <span class="popup__error" id="popup-url-error"></span>
-          <button type="submit" class="popup__button">Create</button>
+          <button type="submit" class="popup__button" id="add-picture-button">
+            Create
+          </button>
         </form>
         <button aria-label="Close" type="button" class="popup__close"></button>
       </div>
@@ -140,7 +144,9 @@
             name="avatar"
           />
           <span class="popup__error" id="popup-profile-pic-url-error"></span>
-          <button type="submit" class="popup__button">Save</button>
+          <button type="submit" class="popup__button" id="edit-avatar-button">
+            Save
+          </button>
         </form>
         <button aria-label="Close" type="button" class="popup__close"></button>
       </div>
@@ -149,7 +155,11 @@
     <div class="popup popup_delete">
       <div class="popup__container">
         <h2 class="popup__title popup__title_no-input">Are you sure?</h2>
-        <button type="submit" class="popup__button" id="delete-confirmation">
+        <button
+          type="submit"
+          class="popup__button"
+          id="delete-confirmation-button"
+        >
           Yes
         </button>
         <button aria-label="Close" type="button" class="popup__close"></button>
