@@ -137,7 +137,7 @@ const userInfo = new UserInfo({
   avatarSelector: ".profile__pic",
 });
 const profilePopup = new PopupWithForm("#popup", (inputValues, button) => {
-  profilePopup.renderLoading(true, "Saving");
+  profilePopup.renderLoading(true, "Saving...");
   api
     .editUserProfile(inputValues)
     .then((inputValues) => {
@@ -148,7 +148,7 @@ const profilePopup = new PopupWithForm("#popup", (inputValues, button) => {
       alert(res);
     })
     .finally(() => {
-      profilePopup.renderLoading(false, "Saving");
+      profilePopup.renderLoading(false, "Saving...");
     });
 });
 
